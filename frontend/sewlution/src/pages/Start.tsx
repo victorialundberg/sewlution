@@ -1,4 +1,4 @@
-import { Logo } from "../styles/logo";
+import { Logo } from "../styles/Logo";
 
 export const Start = () => {
     return (
