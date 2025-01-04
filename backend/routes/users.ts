@@ -11,6 +11,8 @@ interface IUser extends RowDataPacket {
 
 // Sign up
 
+import { ResultSetHeader } from "mysql2";
+
 router.post("/add", (req, res) => {
     let username = req.body.username;
     let encryptedPassword = CryptoJS.AES.encrypt(
@@ -19,22 +21,26 @@ router.post("/add", (req, res) => {
     ).toString();
 
     connection.connect((err) => {
-        if (err) console.log("Error: ", err);
+        if (err) {
+            console.log("Error: ", err);
+            return res
+                .status(500)
+                .json({ message: "Database connection error." });
+        }
 
-        let query = "INSERT into user (username, password) VALUES (?, ?)";
+        let query = "INSERT INTO user (username, password) VALUES (?, ?)";
         let values = [username, encryptedPassword];
 
-        connection.query<IUser[]>(query, values, (err, data) => {
+        connection.query<ResultSetHeader>(query, values, (err, data) => {
             if (err) {
                 console.log("Error", err);
                 return res
                     .status(409)
                     .json({ message: "Username already exists." });
             }
-            data.forEach((user) => {
-                console.log("User Saved", user.username);
-                res.json({ userid: user.insertId });
-            });
+
+            console.log("User Saved", username);
+            res.json({ userid: data.insertId });
         });
     });
 });
