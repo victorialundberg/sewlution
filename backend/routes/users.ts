@@ -40,7 +40,7 @@ router.post("/add", (req, res) => {
             }
 
             console.log("User Saved", username);
-            res.json({ userid: data.insertId });
+            res.json(username);
         });
     });
 });
@@ -66,6 +66,8 @@ router.post("/signin", (req, res) => {
 
                 if (decryptedPassword === req.body.password) {
                     const { password, ...userWithoutPassword } = user;
+                    console.log(userWithoutPassword);
+
                     res.json(userWithoutPassword);
                 } else {
                     res.status(401).json({

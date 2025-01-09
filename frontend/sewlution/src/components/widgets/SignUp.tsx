@@ -29,10 +29,9 @@ export const SignUp = () => {
                     password: password,
                 }
             );
-            console.log(response);
             setDisplayError(false);
             navigate("/overview");
-            localStorage.setItem("user_id", response.data.user_id);
+            localStorage.setItem("username", response.data);
         } catch (error) {
             setDisplayError(true);
             setValidationMessage(false);

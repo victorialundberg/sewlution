@@ -2,7 +2,7 @@ import { ProjectOverviewContainer } from "../../styles/styledComponents/ProjectO
 import { ProjectOverview } from "./ProjectOverview";
 
 export const ProjectsOverview = () => {
-    const user = localStorage.getItem("user_id");
+    const user = localStorage.getItem("username");
 
     if (user) {
         console.log(user, "is signed in");
