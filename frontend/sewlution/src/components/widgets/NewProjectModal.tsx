@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 interface IModalProps {
     showDialog: boolean;
@@ -9,12 +9,14 @@ export const NewProjectModal = (props: IModalProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [projectTitle, setProjectTitle] = useState("");
 
-    if (props.showDialog) {
-        if (dialogRef.current) {
-            dialogRef.current?.showModal();
+    useEffect(() => {
+        if (props.showDialog) {
+            if (dialogRef.current) {
+                dialogRef.current.showModal();
+            }
+            props.setDialogState(false);
         }
-        props.setDialogState(false);
-    }
+    }, [props.showDialog, props]);
 
     const handleClose = (e: FormEvent) => {
         e.preventDefault();
