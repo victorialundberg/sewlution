@@ -31,8 +31,8 @@ export const SignIn = () => {
                 }
             );
             setDisplayError(false);
-            navigate("/overview");
             localStorage.setItem("username", response.data.username);
+            navigate("/overview");
         } catch (error) {
             setDisplayError(true);
             setValidationMessage(false);

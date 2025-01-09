@@ -1,15 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { ProjectOverviewContainer } from "../../styles/styledComponents/ProjectOverviewContainer";
 import { ProjectOverview } from "./ProjectOverview";
+import { NewProjectButton } from "../widgets/NewProjectButton";
 
 export const ProjectsOverview = () => {
     const user = localStorage.getItem("username");
+    const navigate = useNavigate();
 
     if (user) {
         console.log(user, "is signed in");
         // Read all projects
     } else {
         console.log("no user");
-        // Something for fail safe
+        navigate("/");
     }
 
     // List of projects, heading and add new+
@@ -26,7 +29,7 @@ export const ProjectsOverview = () => {
                     For each
                     <ProjectOverview></ProjectOverview>
                 </ul>
-                <button>Add new +</button>
+                <NewProjectButton />
             </ProjectOverviewContainer>
         </>
     );
