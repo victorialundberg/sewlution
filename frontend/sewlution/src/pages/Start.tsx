@@ -1,10 +1,19 @@
-import { Logo } from "../styles/Logo";
+import { SignInOrUp } from "../components/widgets/SignInOrUp";
+import { BackgroundContainer } from "../styles/styledComponents/BackgroundContainer";
+import { Logo } from "../styles/logo/Logo";
+import { variables } from "../styles/variables";
+import { LogoWrapper } from "../styles/logo/LogoWrapper";
 
 export const Start = () => {
     return (
         <>
-            <Logo color="#5C2332"></Logo>
-            Logo and component - Sign in or sign up buttons/Sign in/Sign up
+            <BackgroundContainer>
+                <LogoWrapper>
+                    <Logo color={variables.logoColorRed}></Logo>
+                </LogoWrapper>
+
+                <SignInOrUp></SignInOrUp>
+            </BackgroundContainer>
         </>
     );
 };

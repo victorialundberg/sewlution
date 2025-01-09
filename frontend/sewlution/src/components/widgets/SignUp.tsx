@@ -1,15 +1,21 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [displayError, setDisplayError] = useState(false);
+    const [validationMessage, setValidationMessage] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        addUser(username, password);
-
-        // Go to landing or display error
+        if (username && password) {
+            addUser(username, password);
+        } else {
+            setValidationMessage(true);
+        }
     };
 
     //   const API_URL = process.env.REACT_APP_API_URL;
@@ -24,7 +30,12 @@ export const SignUp = () => {
                 }
             );
             console.log(response);
+            setDisplayError(false);
+            navigate("/overview");
+            localStorage.setItem("user_id", response.data.user_id);
         } catch (error) {
+            setDisplayError(true);
+            setValidationMessage(false);
             if (axios.isAxiosError(error)) {
                 console.error(
                     "Error: ",
@@ -55,6 +66,10 @@ export const SignUp = () => {
                 />
                 <button>Sign up</button>
             </form>
+            {displayError && <span>Username already exists</span>}
+            {validationMessage && (
+                <span>Please enter username and password</span>
+            )}
         </>
     );
 };
