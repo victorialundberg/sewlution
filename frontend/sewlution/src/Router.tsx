@@ -11,6 +11,8 @@ import { SignIn } from "./components/widgets/SignIn";
 import { SignUp } from "./components/widgets/SignUp";
 import { ProtectedRoutes } from "./components/utils/ProtectedRoutes";
 import { About } from "./pages/About";
+import { projectLoader } from "./loaders/projectloader";
+import { HydrateFallback } from "./components/utils/HydrateFallback";
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +43,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/overview",
                         element: <ProjectsOverview />,
+                        loader: projectLoader,
+                        hydrateFallbackElement: (
+                            <HydrateFallback></HydrateFallback>
+                        ),
                     },
                     {
                         path: "/create",

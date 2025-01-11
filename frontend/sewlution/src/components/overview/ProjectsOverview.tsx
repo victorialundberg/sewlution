@@ -1,21 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { ProjectOverviewContainer } from "../../styles/styledComponents/ProjectOverviewContainer";
 import { ProjectOverview } from "./ProjectOverview";
 import { NewProjectButton } from "../widgets/NewProjectButton";
+import { IProject } from "../../models/IProject";
 
 export const ProjectsOverview = () => {
     const user = localStorage.getItem("username");
     const navigate = useNavigate();
+    const projects = useLoaderData() as IProject[];
 
     if (user) {
         console.log(user, "is signed in");
-        // Read all projects
     } else {
         console.log("no user");
         navigate("/");
     }
 
-    // List of projects, heading and add new+
     return (
         <>
             <ProjectOverviewContainer>
@@ -26,8 +26,13 @@ export const ProjectsOverview = () => {
                     <li>Added</li>
                 </ul>
                 <ul>
-                    For each
-                    <ProjectOverview></ProjectOverview>
+                    {projects.map((project) => (
+                        <ProjectOverview
+                            project={project}
+                            key={project.project_id}
+                        ></ProjectOverview>
+                    ))}
+                    ;
                 </ul>
                 <NewProjectButton />
             </ProjectOverviewContainer>

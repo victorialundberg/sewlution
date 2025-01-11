@@ -33,8 +33,8 @@ router.post("/read/all/projects", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
-        let query = "SELECT * FROM project WHERE user_id = ? AND deleted = 0";
-        let values = [req.body.user_id];
+        let query = "SELECT * FROM project WHERE username = ? AND deleted = 0";
+        let values = [req.body.username];
 
         connection.query(query, values, (err, data) => {
             if (err) console.log("Error", err);
