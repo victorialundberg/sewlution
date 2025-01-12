@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import connection from "../lib/conn";
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 
 // Create project
 
@@ -43,18 +43,22 @@ router.post("/read/all/projects", (req, res) => {
 // Read project - one
 
 router.post("/read/project", (req, res) => {
-    let project = {
-        project_id: req.body.project_id,
-    };
-
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
-        let query = "SELECT * FROM project WHERE project_id = ?";
-        let values = project.project_id;
+        let query =
+            "SELECT * FROM project WHERE project_id = ? AND username = ?";
+        let values = [req.body.project, req.body.username];
+        console.log(values);
 
-        connection.query(query, values, (err, data) => {
+        connection.query<RowDataPacket[]>(query, values, (err, data) => {
             if (err) console.log("Error", err);
+            if (data.length < 1) {
+                return res
+                    .status(404)
+                    .json({ message: "No project with that id" });
+            }
+
             res.json(data);
         });
     });

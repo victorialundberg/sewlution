@@ -6,5 +6,6 @@ export const getProjects = async (username: string): Promise<IProject[]> => {
         "http://localhost:3000/projects/read/all/projects",
         { username: username }
     );
+
     return response.data;
 };

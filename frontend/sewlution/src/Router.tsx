@@ -11,8 +11,9 @@ import { SignIn } from "./components/widgets/SignIn";
 import { SignUp } from "./components/widgets/SignUp";
 import { ProtectedRoutes } from "./components/utils/ProtectedRoutes";
 import { About } from "./pages/About";
-import { projectLoader } from "./loaders/projectloader";
 import { HydrateFallback } from "./components/utils/HydrateFallback";
+import { projectsLoader } from "./loaders/projectsLoader";
+import { projectLoader } from "./loaders/projectloader";
 
 export const router = createBrowserRouter([
     {
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
                     {
                         path: "/overview",
                         element: <ProjectsOverview />,
-                        loader: projectLoader,
+                        loader: projectsLoader,
                         hydrateFallbackElement: (
                             <HydrateFallback></HydrateFallback>
                         ),
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/project/:id",
                         element: <ProjectView />,
+                        loader: projectLoader,
+                        hydrateFallbackElement: (
+                            <HydrateFallback></HydrateFallback>
+                        ),
                     },
                     {
                         path: "/deleted",

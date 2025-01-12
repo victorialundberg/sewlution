@@ -5,6 +5,7 @@ export interface IProject {
     deadline?: string;
     link?: string;
     measurements?: string;
+    username?: string;
     deleted: number;
     created: string;
 }

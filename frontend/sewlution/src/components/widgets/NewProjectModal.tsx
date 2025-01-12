@@ -38,7 +38,7 @@ export const NewProjectModal = (props: IModalProps) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         const projectId = await createProject(projectTitle, user);
-        navigate("/project/:" + projectId);
+        navigate("/project/" + projectId);
 
         if (dialogRef.current) {
             dialogRef.current.close();

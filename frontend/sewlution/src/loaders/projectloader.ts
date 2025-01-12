@@ -1,11 +1,16 @@
+import axios, { AxiosResponse } from "axios";
+import { LoaderFunctionArgs } from "react-router-dom";
 import { IProject } from "../models/IProject";
-import { getProjects } from "../services/projectService";
 
-export const projectLoader = async (): Promise<IProject[]> => {
+export const projectLoader = async ({
+    params,
+}: LoaderFunctionArgs): Promise<IProject> => {
     const user = localStorage.getItem("username");
 
-    if (user) {
-        return await getProjects(user);
-    }
-    return [];
+    const response: AxiosResponse<IProject[]> = await axios.post(
+        "http://localhost:3000/projects/read/project",
+        { project: params.id, username: user }
+    );
+
+    return response.data[0];
 };
