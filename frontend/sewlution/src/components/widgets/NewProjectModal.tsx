@@ -1,4 +1,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { createProject } from "../../services/createProjectService";
+import { useNavigate } from "react-router-dom";
 
 interface IModalProps {
     showDialog: boolean;
@@ -8,6 +10,14 @@ interface IModalProps {
 export const NewProjectModal = (props: IModalProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [projectTitle, setProjectTitle] = useState("");
+    const storedUser = localStorage.getItem("username");
+    let user = "";
+
+    if (storedUser) {
+        user = storedUser;
+    }
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.showDialog) {
@@ -25,13 +35,14 @@ export const NewProjectModal = (props: IModalProps) => {
         }
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        const projectId = await createProject(projectTitle, user);
+        navigate("/project/:" + projectId);
+
         if (dialogRef.current) {
             dialogRef.current.close();
         }
-        // Create new project with title
-        // Go to edit mode for this project
     };
 
     return (

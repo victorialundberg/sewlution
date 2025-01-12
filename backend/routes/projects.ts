@@ -7,22 +7,19 @@ import { ResultSetHeader } from "mysql2";
 
 router.post("/add/project", (req, res) => {
     let title = req.body.title;
-    let user_id = req.body.user_id;
+    let username = req.body.username;
 
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
-        let query = "INSERT into project (title, user_id) VALUES (?, ?)";
-        let values = [title, user_id];
+        let query = "INSERT into project (title, username) VALUES (?, ?)";
+        let values = [title, username];
 
         connection.query<ResultSetHeader>(query, values, (err, data) => {
             if (err) console.log("Error", err);
 
             console.log("Project created", data);
-            res.json({
-                message: "Project created successfully",
-                project: data.insertId,
-            });
+            res.json({ projectId: data.insertId });
         });
     });
 });
