@@ -46,20 +46,32 @@ router.post("/read/project", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
-        let query =
-            "SELECT * FROM project WHERE project_id = ? AND username = ?";
-        let values = [req.body.project, req.body.username];
-        console.log(values);
+        let project_id = req.body.project;
+        let username = req.body.username;
+
+        let query = `
+            SELECT * FROM project WHERE project_id = ? AND username = ?;
+            SELECT * FROM material WHERE project_id = ?;
+            SELECT * FROM todo WHERE project_id = ?;
+            `;
+        let values = [project_id, username, project_id, project_id];
 
         connection.query<RowDataPacket[]>(query, values, (err, data) => {
             if (err) console.log("Error", err);
-            if (data.length < 1) {
+
+            const [projectData, materialData, todoData] = data;
+
+            if (projectData.length < 1) {
                 return res
                     .status(404)
                     .json({ message: "No project with that id" });
             }
 
-            res.json(data);
+            res.json({
+                project: projectData,
+                material: materialData,
+                todo: todoData,
+            });
         });
     });
 });
@@ -163,23 +175,23 @@ router.post("/add/materials", (req, res) => {
 
 // Read materials
 
-router.post("/read/materials", (req, res) => {
-    let project = {
-        project_id: req.body.project_id,
-    };
+// router.post("/read/materials", (req, res) => {
+//     let project = {
+//         project_id: req.body.project_id,
+//     };
 
-    connection.connect((err) => {
-        if (err) console.log("Error: ", err);
+//     connection.connect((err) => {
+//         if (err) console.log("Error: ", err);
 
-        let query = "SELECT * FROM material WHERE project_id = ?";
-        let values = project.project_id;
+//         let query = "SELECT * FROM material WHERE project_id = ?";
+//         let values = project.project_id;
 
-        connection.query(query, values, (err, data) => {
-            if (err) console.log("Error", err);
-            res.json(data);
-        });
-    });
-});
+//         connection.query(query, values, (err, data) => {
+//             if (err) console.log("Error", err);
+//             res.json(data);
+//         });
+//     });
+// });
 
 // Update material
 
@@ -202,6 +214,7 @@ router.patch("/edit/materials", (req, res) => {
             res.json({
                 updatedMaterials: {
                     material_id,
+                    material,
                     quantity,
                     unit,
                     unit_price,
@@ -251,23 +264,23 @@ router.post("/add/todo", (req, res) => {
 
 // Read todo
 
-router.post("/read/todo", (req, res) => {
-    let project = {
-        project_id: req.body.project_id,
-    };
+// router.post("/read/todo", (req, res) => {
+//     let project = {
+//         project_id: req.body.project_id,
+//     };
 
-    connection.connect((err) => {
-        if (err) console.log("Error: ", err);
+//     connection.connect((err) => {
+//         if (err) console.log("Error: ", err);
 
-        let query = "SELECT * FROM todo WHERE project_id = ?";
-        let values = project.project_id;
+//         let query = "SELECT * FROM todo WHERE project_id = ?";
+//         let values = project.project_id;
 
-        connection.query(query, values, (err, data) => {
-            if (err) console.log("Error", err);
-            res.json(data);
-        });
-    });
-});
+//         connection.query(query, values, (err, data) => {
+//             if (err) console.log("Error", err);
+//             res.json(data);
+//         });
+//     });
+// });
 
 // Update todo
 

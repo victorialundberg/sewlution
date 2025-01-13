@@ -8,6 +8,7 @@ const connection = mysql.createConnection({
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
     database: process.env.MYSQLDATABASE,
+    multipleStatements: true,
 });
 
 export default connection;

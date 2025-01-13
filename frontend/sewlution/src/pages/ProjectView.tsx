@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import { IProject } from "../models/IProject";
+import { IProjectResponse } from "../models/IProjectResponse";
+import { Materials } from "../components/widgets/Materials";
+import { Todos } from "../components/widgets/Todos";
 
 export const ProjectView = () => {
-    const project = useLoaderData() as IProject;
+    const projectLoader = useLoaderData() as IProjectResponse;
+    const project = projectLoader.project[0];
+    const materials = projectLoader.material;
+    const todos = projectLoader.todo;
 
     return (
         <>
@@ -24,6 +29,8 @@ export const ProjectView = () => {
                     <p>{project.measurements}</p>
                 </div>
             )}
+            {materials && <Materials materials={materials} />}
+            {todos && <Todos todos={todos} />}
         </>
     );
 };

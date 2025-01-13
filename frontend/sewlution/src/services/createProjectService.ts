@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IResponse } from "../models/IProjectResponse";
+import { IResponse } from "../models/ICreateProject";
 
 export const createProject = async (
     title: string,
