@@ -5,5 +5,13 @@ interface IMaterialProps {
 }
 
 export const Material = (props: IMaterialProps) => {
-    return <>{props.material.material}</>;
+    return (
+        <>
+            <td> {props.material.material}</td>
+            <td>{props.material.quantity}</td>
+            <td>{props.material.unit}</td>
+            <td>{props.material.unit_price} SEK</td>
+            <td>{props.material.quantity * props.material.unit_price} SEK</td>
+        </>
+    );
 };

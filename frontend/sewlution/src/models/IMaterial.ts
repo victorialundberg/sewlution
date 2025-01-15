@@ -3,6 +3,6 @@ export interface IMaterial {
     material: string;
     quantity: number;
     unit: string;
-    unit_price: string;
+    unit_price: number;
     project_id: number;
 }
