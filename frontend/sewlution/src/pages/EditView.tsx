@@ -5,14 +5,20 @@ import { ProjectViewWrapper } from "../styles/styledComponents/Wrappers";
 import { EditTitle } from "../components/edit/EditTitle";
 import { EditDeadline } from "../components/edit/EditDeadline";
 import { AddLink } from "../components/edit/EditLink";
+import { Materials } from "../components/overview/Materials";
+import { Todos } from "../components/overview/Todos";
+import { TextEditor } from "../components/edit/EditText";
 
 export const EditView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
     const project = projectLoader.projects[0];
+    const materials = projectLoader.materials;
+    const todos = projectLoader.todos;
 
     return (
         <>
             <ProjectViewWrapper>
+                <TextEditor></TextEditor>
                 <EditTitle
                     title={project.title}
                     projectId={project.project_id}
@@ -31,6 +37,16 @@ export const EditView = () => {
                     link={project.link}
                     projectId={project.project_id}
                 ></AddLink>
+                <Materials
+                    materials={materials}
+                    showButtons={true}
+                    projectId={project.project_id}
+                />
+                <Todos
+                    showForm={true}
+                    todos={todos}
+                    projectId={project.project_id}
+                />
             </ProjectViewWrapper>
         </>
     );
