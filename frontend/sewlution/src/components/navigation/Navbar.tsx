@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { NavbarWrapper } from "../../styles/styledComponents/NavbarWrapper";
 import { NewProjectNav } from "./NewProjectNav";
+import { NavbarWrapper } from "../../styles/styledComponents/Wrappers";
 
 export const Navbar = () => {
     return (

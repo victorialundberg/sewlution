@@ -4,16 +4,16 @@ import { NotFound } from "./pages/NotFound";
 import { LayoutNav } from "./pages/LayoutNav";
 import { Start } from "./pages/Start";
 import { ProjectsOverview } from "./components/overview/ProjectsOverview";
-import { CreateView } from "./pages/CreateView";
 import { ProjectView } from "./pages/ProjectView";
 import { DeletedView } from "./pages/DeletedView";
-import { SignIn } from "./components/widgets/SignIn";
-import { SignUp } from "./components/widgets/SignUp";
+import { SignIn } from "./components/auth/SignIn";
+import { SignUp } from "./components/auth/SignUp";
 import { ProtectedRoutes } from "./components/utils/ProtectedRoutes";
 import { About } from "./pages/About";
 import { HydrateFallback } from "./components/utils/HydrateFallback";
 import { projectsLoader } from "./loaders/projectsLoader";
-import { projectLoader } from "./loaders/projectloader";
+import { EditView } from "./pages/EditView";
+import { projectLoader } from "./loaders/projectLoader";
 
 export const router = createBrowserRouter([
     {
@@ -50,8 +50,12 @@ export const router = createBrowserRouter([
                         ),
                     },
                     {
-                        path: "/create",
-                        element: <CreateView />,
+                        path: "/edit/:id",
+                        element: <EditView />,
+                        loader: projectLoader,
+                        hydrateFallbackElement: (
+                            <HydrateFallback></HydrateFallback>
+                        ),
                     },
                     {
                         path: "/project/:id",

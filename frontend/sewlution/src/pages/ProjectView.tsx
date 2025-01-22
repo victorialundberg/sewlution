@@ -1,19 +1,19 @@
 import { useLoaderData } from "react-router-dom";
-import { IProjectResponse } from "../models/IProjectResponse";
-import { Materials } from "../components/widgets/Materials";
-import { Todos } from "../components/widgets/Todos";
+import { IProjectsResponse } from "../models/IProjectsResponse";
+import { Materials } from "../components/overview/Materials";
+import { Todos } from "../components/overview/Todos";
 import { Separator } from "../styles/styledComponents/Separator";
 import {
     ProjectHeader,
     ProjectViewContainer,
-} from "../styles/styledComponents/ProjectViewContainer";
-import { ProjectViewWrapper } from "../styles/styledComponents/ProjectViewWrapper";
+} from "../styles/styledComponents/Containers";
+import { ProjectViewWrapper } from "../styles/styledComponents/Wrappers";
 
 export const ProjectView = () => {
-    const projectLoader = useLoaderData() as IProjectResponse;
-    const project = projectLoader.project[0];
-    const materials = projectLoader.material;
-    const todos = projectLoader.todo;
+    const projectLoader = useLoaderData() as IProjectsResponse;
+    const project = projectLoader.projects[0];
+    const materials = projectLoader.materials;
+    const todos = projectLoader.todos;
 
     return (
         <>
@@ -36,8 +36,20 @@ export const ProjectView = () => {
                         <p>{project.measurements}</p>
                     </ProjectViewContainer>
                 )}
-                {materials && <Materials materials={materials} />}
-                {todos && <Todos todos={todos} />}
+                {materials.length > 0 && (
+                    <Materials
+                        materials={materials}
+                        showButtons={false}
+                        projectId={project.project_id}
+                    />
+                )}
+                {todos.length > 0 && (
+                    <Todos
+                        showForm={false}
+                        todos={todos}
+                        projectId={project.project_id}
+                    />
+                )}
             </ProjectViewWrapper>
         </>
     );

@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import { IMaterial } from "../../models/IMaterial";
+import {
+    MaterialTable,
+    TableWrapper,
+} from "../../styles/styledComponents/Table";
+import { AddMaterialButton } from "../buttons/AddMaterialButton";
+import { Material } from "./Material";
+import axios from "axios";
+
+interface IMaterialProps {
+    materials: IMaterial[];
+    showButtons: boolean;
+    projectId: number;
+}
+
+export const Materials = (props: IMaterialProps) => {
+    const [materials, setMaterials] = useState<IMaterial[]>(props.materials);
+    const [changed, setChanged] = useState(false);
+    const projectId = props.projectId;
+
+    useEffect(() => {
+        const getMaterials = async (projectId: number) => {
+            try {
+                const response = await axios.post<IMaterial[]>(
+                    "http://localhost:3000/projects/read/material",
+                    { project_id: projectId }
+                );
+                setMaterials(response.data);
+            } catch (error) {
+                console.log("Error fetching materials", error);
+            }
+        };
+
+        if (changed) {
+            console.log("New material addded, fetching all materials");
+            getMaterials(projectId);
+            setChanged(false);
+        }
+    }, [changed, projectId]);
+
+    const handleSuccess = () => {
+        setChanged(true);
+    };
+
+    return (
+        <TableWrapper>
+            <MaterialTable>
+                <thead>
+                    <tr>
+                        {props.showButtons ? (
+                            <th colSpan={6}>Materials</th>
+                        ) : (
+                            <th colSpan={5}>Materials</th>
+                        )}
+                    </tr>
+                    <tr>
+                        <th>Material</th>
+                        <th>Amount</th>
+                        <th>Unit</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        {props.showButtons && <th>Delete</th>}
+                    </tr>
+                </thead>
+                <tbody>
+                    {materials.map((material, i) => (
+                        <Material
+                            showButton={props.showButtons}
+                            material={material}
+                            key={i}
+                            onChange={handleSuccess}
+                        />
+                    ))}
+                </tbody>
+            </MaterialTable>
+            {props.showButtons && (
+                <AddMaterialButton
+                    projectId={projectId}
+                    onSuccess={handleSuccess}
+                />
+            )}
+        </TableWrapper>
+    );
+};

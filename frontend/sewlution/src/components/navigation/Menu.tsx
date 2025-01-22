@@ -1,8 +1,8 @@
 import { Logo } from "../../styles/logo/Logo";
 import { LogoWrapperMenu } from "../../styles/logo/LogoWrapper";
-import { MenuWrapper } from "../../styles/styledComponents/MenuWrapper";
+import { MenuWrapper } from "../../styles/styledComponents/Wrappers";
 import { variables } from "../../styles/variables";
-import { SignOutButton } from "../widgets/SignOutButton";
+import { SignOutButton } from "../buttons/SignOutButton";
 import { Navbar } from "./Navbar";
 
 export const Menu = () => {

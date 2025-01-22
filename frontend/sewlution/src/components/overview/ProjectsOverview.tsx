@@ -1,8 +1,8 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { ProjectOverviewContainer } from "../../styles/styledComponents/ProjectOverviewContainer";
 import { ProjectOverview } from "./ProjectOverview";
-import { NewProjectButton } from "../widgets/NewProjectButton";
 import { IProject } from "../../models/IProject";
+import { ProjectOverviewContainer } from "../../styles/styledComponents/Containers";
+import { NewProjectButton } from "../buttons/NewProjectButton";
 
 export const ProjectsOverview = () => {
     const user = localStorage.getItem("username");

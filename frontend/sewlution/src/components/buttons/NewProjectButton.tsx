@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { ArrowRight } from "../../styles/icons/ArrowRight";
 import { NewProjectModal } from "../modals/NewProjectModal";
 
-export const NewProjectNav = () => {
+export const NewProjectButton = () => {
     const [showDialog, setShowDialog] = useState(false);
 
     const openDialog = () => setShowDialog(true);
@@ -14,12 +13,7 @@ export const NewProjectNav = () => {
                 setDialogState={setDialogState}
                 showDialog={showDialog}
             ></NewProjectModal>
-            <li>
-                <button onClick={openDialog}>
-                    <span>New Project</span>
-                    <ArrowRight aria-hidden="true" />
-                </button>
-            </li>
+            <button onClick={openDialog}>Add new +</button>
         </>
     );
 };
