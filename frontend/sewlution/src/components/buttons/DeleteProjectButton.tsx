@@ -3,6 +3,7 @@ import { DeleteProjectModal } from "../modals/DeleteProjectModal";
 
 interface IDialogProps {
     projectId: number;
+    onDelete: () => void;
 }
 
 export const DeleteProjectButton = (props: IDialogProps) => {
@@ -10,6 +11,7 @@ export const DeleteProjectButton = (props: IDialogProps) => {
 
     const openDialog = () => setShowDialog(true);
     const setDialogState = (data: boolean) => setShowDialog(data);
+    const onDelete = () => props.onDelete();
 
     return (
         <>
@@ -17,6 +19,7 @@ export const DeleteProjectButton = (props: IDialogProps) => {
                 setDialogState={setDialogState}
                 showDialog={showDialog}
                 projectId={props.projectId}
+                onDelete={onDelete}
             ></DeleteProjectModal>
 
             <button onClick={openDialog}>Delete icon</button>

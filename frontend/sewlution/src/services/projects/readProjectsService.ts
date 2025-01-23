@@ -9,3 +9,14 @@ export const getProjects = async (username: string): Promise<IProject[]> => {
 
     return response.data;
 };
+
+export const getDeletedProjects = async (
+    username: string
+): Promise<IProject[]> => {
+    const response: AxiosResponse<IProject[]> = await axios.post(
+        "http://localhost:3000/projects/read/all/projects/deleted",
+        { username: username }
+    );
+
+    return response.data;
+};

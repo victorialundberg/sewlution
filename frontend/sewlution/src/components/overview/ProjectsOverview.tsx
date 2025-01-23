@@ -3,14 +3,39 @@ import { ProjectOverview } from "./ProjectOverview";
 import { IProject } from "../../models/IProject";
 import { ProjectOverviewContainer } from "../../styles/styledComponents/Containers";
 import { NewProjectButton } from "../buttons/NewProjectButton";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const ProjectsOverview = () => {
-    const user = localStorage.getItem("username");
     const navigate = useNavigate();
-    const projects = useLoaderData() as IProject[];
-
+    const [projects, setProjects] = useState(useLoaderData() as IProject[]);
+    const user = localStorage.getItem("username");
+    const [deleted, setDeleted] = useState(false);
     if (!user) navigate("/");
 
+    useEffect(() => {
+        const getUpdatedProjects = async (user: string) => {
+            try {
+                const response = await axios.post(
+                    "http://localhost:3000/projects/read/all/projects",
+                    { username: user }
+                );
+                setProjects(response.data);
+            } catch (error) {
+                console.log("Error fetching projects");
+            }
+        };
+
+        if (deleted && user) {
+            console.log("Projected deleted, refetching projects");
+            getUpdatedProjects(user);
+            setDeleted(false);
+        }
+    }, [deleted, user]);
+
+    const onDelete = () => {
+        setDeleted(true);
+    };
     return (
         <>
             <ProjectOverviewContainer>
@@ -23,11 +48,11 @@ export const ProjectsOverview = () => {
                 <ul>
                     {projects.map((project) => (
                         <ProjectOverview
+                            onDelete={onDelete}
                             project={project}
                             key={project.project_id}
                         ></ProjectOverview>
                     ))}
-                    ;
                 </ul>
                 <NewProjectButton />
             </ProjectOverviewContainer>

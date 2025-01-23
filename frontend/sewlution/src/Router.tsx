@@ -14,6 +14,7 @@ import { HydrateFallback } from "./components/utils/HydrateFallback";
 import { projectsLoader } from "./loaders/projectsLoader";
 import { EditView } from "./pages/EditView";
 import { projectLoader } from "./loaders/projectLoader";
+import { deletedProjectsLoader } from "./loaders/deletedProjectsLoader";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
                     {
                         path: "/deleted",
                         element: <DeletedView />,
+                        loader: deletedProjectsLoader,
+                        hydrateFallbackElement: (
+                            <HydrateFallback></HydrateFallback>
+                        ),
                     },
                     {
                         path: "/about",

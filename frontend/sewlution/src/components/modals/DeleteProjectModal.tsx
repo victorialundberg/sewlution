@@ -5,6 +5,7 @@ interface IModalProps {
     showDialog: boolean;
     setDialogState: (data: boolean) => void;
     projectId: number;
+    onDelete: () => void;
 }
 
 export const DeleteProjectModal = (props: IModalProps) => {
@@ -29,6 +30,7 @@ export const DeleteProjectModal = (props: IModalProps) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         await softDeleteProject(props.projectId);
+        props.onDelete();
 
         if (dialogRef.current) {
             dialogRef.current.close();

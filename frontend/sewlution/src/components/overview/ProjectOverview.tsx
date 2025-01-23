@@ -6,9 +6,12 @@ import { DeleteProjectButton } from "../buttons/DeleteProjectButton";
 interface IOverViewProps {
     project: IProject;
     key: number;
+    onDelete: () => void;
 }
 
 export const ProjectOverview = (props: IOverViewProps) => {
+    const onDelete = () => props.onDelete();
+
     return (
         <>
             <ProjectOverviewItem>
@@ -25,7 +28,10 @@ export const ProjectOverview = (props: IOverViewProps) => {
                 <Link to={`/edit/${props.project.project_id}`}>
                     <button>Edit Icon</button>
                 </Link>
-                <DeleteProjectButton projectId={props.project.project_id} />
+                <DeleteProjectButton
+                    onDelete={onDelete}
+                    projectId={props.project.project_id}
+                />
             </ProjectOverviewItem>
         </>
     );

@@ -78,6 +78,22 @@ router.post("/read/project", (req, res) => {
     });
 });
 
+// Read deleted project - all
+
+router.post("/read/all/projects/deleted", (req, res) => {
+    connection.connect((err) => {
+        if (err) console.log("Error: ", err);
+
+        let query = "SELECT * FROM project WHERE username = ? AND deleted = 1";
+        let values = [req.body.username];
+
+        connection.query(query, values, (err, data) => {
+            if (err) console.log("Error", err);
+            res.json(data);
+        });
+    });
+});
+
 // read title
 
 router.post("/read/title", (req, res) => {
@@ -466,6 +482,24 @@ router.delete("/delete/soft/project", (req, res) => {
         connection.query<ResultSetHeader>(query, values, (err, data) => {
             if (err) console.log("Error", err);
             res.json({ message: "deleted", id: project_id });
+        });
+    });
+});
+
+// Restore soft delete
+
+router.patch("/restore/project", (req, res) => {
+    let project_id = req.body.project_id;
+
+    connection.connect((err) => {
+        if (err) console.log("Error: ", err);
+
+        let query = "UPDATE project SET deleted = 0 WHERE project_id = ?";
+        let values = [project_id];
+
+        connection.query<ResultSetHeader>(query, values, (err, data) => {
+            if (err) console.log("Error", err);
+            res.json({ message: "restored", id: project_id });
         });
     });
 });
