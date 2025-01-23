@@ -328,6 +328,7 @@ router.post("/read/measurements", (req, res) => {
 router.patch("/edit/measurements", (req, res) => {
     let measurements = req.body.measurements;
     let project_id = req.body.project_id;
+
     connection.connect((err) => {
         if (!project_id) {
             return res.status(400).json({ error: "project_id is required" });
@@ -339,9 +340,63 @@ router.patch("/edit/measurements", (req, res) => {
 
         connection.query(query, values, (err, data) => {
             if (err) console.log("Error", err);
+
             res.json({
                 data: {
                     updated: measurements,
+                    success: true,
+                },
+            });
+        });
+    });
+});
+
+// read description
+
+router.post("/read/description", (req, res) => {
+    connection.connect((err) => {
+        if (err) console.log("Error: ", err);
+
+        let project_id = req.body.project_id;
+
+        let query = "SELECT description FROM project WHERE project_id = ?";
+        let values = [project_id];
+
+        connection.query<RowDataPacket[]>(query, values, (err, data) => {
+            if (err) console.log("Error", err);
+
+            if (data.length < 1) {
+                return res.status(404).json({
+                    message: "No description were found with that id",
+                });
+            }
+
+            console.log(data[0]);
+
+            res.json({ data: data[0] });
+        });
+    });
+});
+
+// Update description
+
+router.patch("/edit/description", (req, res) => {
+    let description = req.body.description;
+    let project_id = req.body.project_id;
+    connection.connect((err) => {
+        if (!project_id) {
+            return res.status(400).json({ error: "project_id is required" });
+        }
+        if (err) console.log("Error: ", err);
+
+        let query = "UPDATE project SET description = ? WHERE project_id = ?";
+        let values = [description, project_id];
+
+        connection.query(query, values, (err, data) => {
+            if (err) console.log("Error", err);
+            res.json({
+                data: {
+                    updated: description,
                     success: true,
                 },
             });

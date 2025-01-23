@@ -8,12 +8,20 @@ import {
     ProjectViewContainer,
 } from "../styles/styledComponents/Containers";
 import { ProjectViewWrapper } from "../styles/styledComponents/Wrappers";
+import DOMPurify from "dompurify";
 
 export const ProjectView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
     const project = projectLoader.projects[0];
     const materials = projectLoader.materials;
     const todos = projectLoader.todos;
+
+    const sanitizedDescription = project.description
+        ? DOMPurify.sanitize(project.description)
+        : "";
+    const sanitizedMeasurements = project.measurements
+        ? DOMPurify.sanitize(project.measurements)
+        : "";
 
     return (
         <>
@@ -24,16 +32,24 @@ export const ProjectView = () => {
                     {project.deadline && <Separator />}
                     {project.deadline && <p>{project.deadline}</p>}
                 </ProjectHeader>
-                {project.description && (
+                {sanitizedDescription !== "" && (
                     <ProjectViewContainer>
                         <h2>Notes</h2>
-                        <p>{project.description}</p>
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedDescription,
+                            }}
+                        ></p>
                     </ProjectViewContainer>
                 )}
-                {project.measurements && (
+                {sanitizedMeasurements !== "" && (
                     <ProjectViewContainer>
                         <h2>Measurements</h2>
-                        <p>{project.measurements}</p>
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: sanitizedMeasurements,
+                            }}
+                        ></p>
                     </ProjectViewContainer>
                 )}
                 {materials.length > 0 && (

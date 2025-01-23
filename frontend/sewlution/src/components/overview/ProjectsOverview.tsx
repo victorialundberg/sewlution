@@ -9,12 +9,7 @@ export const ProjectsOverview = () => {
     const navigate = useNavigate();
     const projects = useLoaderData() as IProject[];
 
-    if (user) {
-        console.log(user, "is signed in");
-    } else {
-        console.log("no user");
-        navigate("/");
-    }
+    if (!user) navigate("/");
 
     return (
         <>

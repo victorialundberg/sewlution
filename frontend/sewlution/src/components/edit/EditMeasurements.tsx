@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
+import { updateMeasurements } from "../../services/projects/edit/updateMeasurementsService";
 
-export const TextEditor = () => {
-    // Create a loader, purify content and set initial content, useState(purified)
+interface IEditorProps {
+    initialValue: string;
+    projectId: number;
+}
+
+export const EditMeasurements = (props: IEditorProps) => {
     const [content, setContent] = useState("");
     const [enabled, setEnabled] = useState(false);
 
@@ -12,16 +17,23 @@ export const TextEditor = () => {
         setEnabled(true);
     };
 
-    const handleClick = () => {
-        setEnabled(false);
+    const handleClick = async () => {
+        console.log(content);
+
+        const response = await updateMeasurements(content, props.projectId);
+        if (response.data.success) {
+            setEnabled(false);
+        }
     };
 
     return (
         <>
             <EditContainer>
+                <h2>Measurements</h2>
                 <Editor
                     tinymceScriptSrc="/tinymce/tinymce.min.js"
                     licenseKey="gpl"
+                    initialValue={props.initialValue}
                     value={content}
                     onEditorChange={handleEditorChange}
                     init={{
