@@ -11,7 +11,7 @@ import {
 
 export const DeletedView = () => {
     const [projects, setProjects] = useState(useLoaderData() as IProject[]);
-    const [deleted, setDeleted] = useState(false);
+    const [changed, setChanged] = useState(false);
     const user = localStorage.getItem("username");
 
     useEffect(() => {
@@ -27,16 +27,18 @@ export const DeletedView = () => {
             }
         };
 
-        if (deleted && user) {
-            console.log("Projected deleted, refetching deleted projects");
+        if (changed && user) {
+            console.log("Change detected, refetching deleted projects");
             getDeletedProjects(user);
-            setDeleted(false);
+            setChanged(false);
         }
-    }, [deleted, user]);
+    }, [changed, user]);
 
     const handleDelete = () => {
-        console.log("handle delete");
-        setDeleted(true);
+        setChanged(true);
+    };
+    const handleRestore = () => {
+        setChanged(true);
     };
 
     return (
@@ -46,6 +48,7 @@ export const DeletedView = () => {
                     <h1>Deleted Projects</h1>
                     {projects.map((project) => (
                         <DeletedProject
+                            onRestore={handleRestore}
                             onDelete={handleDelete}
                             project={project}
                             key={project.project_id}

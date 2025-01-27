@@ -10,6 +10,7 @@ interface IDeletedProjectProps {
     project: IProject;
     key: number;
     onDelete: () => void;
+    onRestore: () => void;
 }
 
 export const DeletedProject = (props: IDeletedProjectProps) => {
@@ -21,7 +22,10 @@ export const DeletedProject = (props: IDeletedProjectProps) => {
     };
 
     const handleRestore = async () => {
-        await restoreProject(props.project.project_id);
+        const response = await restoreProject(props.project.project_id);
+        if (response.message === "restored") {
+            props.onRestore();
+        }
     };
 
     return (

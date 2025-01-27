@@ -45,8 +45,9 @@ export const ProjectsOverview = () => {
                     <Heading>Active Projects</Heading>
                     <ul className="overviewHeader">
                         <li>Title</li>
-                        <li>Deadline</li>
                         <li>Added</li>
+                        <li>Deadline</li>
+                        <li>Options</li>
                     </ul>
                     <ul>
                         {projects.map((project) => (

@@ -7,10 +7,8 @@ export const restoreProject = async (
     const response: AxiosResponse<IDeleteResponse> = await axios.patch(
         "http://localhost:3000/projects/restore/project",
         {
-            data: { project_id: projectId },
+            project_id: projectId,
         }
     );
-    console.log(response.data);
-
     return response.data;
 };

@@ -21,10 +21,10 @@ export const ProjectOverview = (props: IOverViewProps) => {
                 <Link to={`/project/${props.project.project_id}`}>
                     {props.project.title}
                 </Link>
+                <span>{props.project.created.slice(0, 10)}</span>
                 {props.project.deadline && (
                     <span>{props.project.deadline}</span>
                 )}
-                <span>{props.project.created.slice(0, 10)}</span>
                 <div className="buttonContainer">
                     <Link to={`/project/${props.project.project_id}`}>
                         <IconButton>
