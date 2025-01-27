@@ -1,6 +1,15 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createProject } from "../../services/projects/createProjectService";
+import {
+    FormDialog,
+    ErrorMessage,
+    Heading,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface IModalProps {
     showDialog: boolean;
@@ -10,6 +19,7 @@ interface IModalProps {
 export const NewProjectModal = (props: IModalProps) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [projectTitle, setProjectTitle] = useState("");
+    const [displayError, setDisplayError] = useState(false);
     const storedUser = localStorage.getItem("username");
     let user = "";
 
@@ -33,13 +43,18 @@ export const NewProjectModal = (props: IModalProps) => {
         if (dialogRef.current) {
             dialogRef.current.close();
         }
+        setDisplayError(false);
     };
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        if (projectTitle.trim() === "") {
+            setDisplayError(true);
+            return;
+        }
         const projectId = await createProject(projectTitle, user);
-        navigate("/project/" + projectId);
-
+        navigate("/edit/" + projectId);
+        setProjectTitle("");
         if (dialogRef.current) {
             dialogRef.current.close();
         }
@@ -47,20 +62,41 @@ export const NewProjectModal = (props: IModalProps) => {
 
     return (
         <>
-            <dialog ref={dialogRef} className="newProjectModal">
+            <FormDialog ref={dialogRef}>
                 <form>
-                    <p>New Project</p>
-                    <label htmlFor="projectTitle">Add Title</label>
-                    <input
+                    <Heading>New Project</Heading>
+                    <ProjectLabel htmlFor="projectTitle">
+                        Add Title
+                    </ProjectLabel>
+                    <InputField
+                        $bordercolor={colors.red}
                         type="text"
                         id="projectTitle"
                         value={projectTitle}
-                        onChange={(e) => setProjectTitle(e.target.value)}
+                        onChange={(e) => {
+                            setProjectTitle(e.target.value);
+                            setDisplayError(false);
+                        }}
                     />
-                    <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleSubmit}>Create</button>
+                    <SubmitButton
+                        $backgroundColor={colors.grey}
+                        aria-label="Close dialog"
+                        onClick={handleClose}
+                    >
+                        Cancel
+                    </SubmitButton>
+                    <SubmitButton
+                        aria-disabled={projectTitle.trim() === ""}
+                        aria-label="Create Project"
+                        onClick={handleSubmit}
+                    >
+                        Create
+                    </SubmitButton>
+                    {displayError && (
+                        <ErrorMessage>Please provide a title!</ErrorMessage>
+                    )}
                 </form>
-            </dialog>
+            </FormDialog>
         </>
     );
 };

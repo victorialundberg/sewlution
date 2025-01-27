@@ -1,7 +1,10 @@
 import { IProject } from "../../models/IProject";
 import { hardDeleteProject } from "../../services/projects/deleteProjectService";
 import { restoreProject } from "../../services/projects/restoreProjectService";
+import { colors } from "../../styles/colors";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
 import { DeletedProjectContainer } from "../../styles/styledComponents/Containers";
+import { Heading } from "../../styles/styledComponents/Items";
 
 interface IDeletedProjectProps {
     project: IProject;
@@ -24,13 +27,23 @@ export const DeletedProject = (props: IDeletedProjectProps) => {
     return (
         <>
             <DeletedProjectContainer>
-                <h2>{props.project.title}</h2>
-                <button type="button" onClick={handleRestore}>
+                <Heading>{props.project.title}</Heading>
+                <SubmitButton
+                    $backgroundColor={colors.lightGreen}
+                    $color={colors.black}
+                    type="button"
+                    onClick={handleRestore}
+                >
                     Restore
-                </button>
-                <button type="button" onClick={handleDelete}>
+                </SubmitButton>
+                <SubmitButton
+                    $backgroundColor={colors.lightGrey}
+                    $color={colors.black}
+                    type="button"
+                    onClick={handleDelete}
+                >
                     Delete
-                </button>
+                </SubmitButton>
             </DeletedProjectContainer>
         </>
     );

@@ -14,7 +14,7 @@ export const Navbar = () => {
                     <Link to={"/deleted"}>Deleted Projects</Link>
                 </li>
                 <li>
-                    <Link to={"/about"}>About Sewlutions</Link>
+                    <Link to={"/about"}>About Sewlution</Link>
                 </li>
             </NavbarWrapper>
         </>

@@ -1,7 +1,10 @@
 import { ITodo } from "../../models/ITodo";
 import { deleteTodo } from "../../services/todos/deleteTodoService";
 import { editTodo } from "../../services/todos/editTodoService";
-import { TodoItem } from "../../styles/styledComponents/Items";
+import { TrashIcon } from "../../styles/icons/TrashIcon";
+import { IconButton } from "../../styles/styledComponents/Buttons";
+import { ProjectLabel, TodoItem } from "../../styles/styledComponents/Items";
+import { colors } from "../../styles/colors";
 
 interface ITodoProps {
     todo: ITodo;
@@ -11,13 +14,17 @@ interface ITodoProps {
 export const Todo = (props: ITodoProps) => {
     return (
         <TodoItem>
-            <p>{props.todo.todo}</p>
-            <button
-                onClick={async () => {
+            <ProjectLabel htmlFor={`todo-checkbox-${props.todo.todo_id}`}>
+                {props.todo.todo}
+            </ProjectLabel>
+            <input
+                type="checkbox"
+                checked={props.todo.done === 1}
+                onChange={async (e) => {
                     if (props.todo.todo_id !== undefined) {
                         const updatedTodo = {
                             ...props.todo,
-                            done: props.todo.done === 1 ? 0 : 1,
+                            done: e.target.checked ? 1 : 0,
                         };
                         const response = await editTodo(updatedTodo);
                         if (response.updatedTodo.success) {
@@ -25,10 +32,11 @@ export const Todo = (props: ITodoProps) => {
                         }
                     }
                 }}
-            >
-                Done
-            </button>
-            <button
+                aria-label={`Mark todo as ${
+                    props.todo.done === 1 ? "not done" : "done"
+                }`}
+            />
+            <IconButton
                 onClick={() => {
                     if (props.todo.todo_id !== undefined) {
                         deleteTodo(props.todo.todo_id);
@@ -36,8 +44,8 @@ export const Todo = (props: ITodoProps) => {
                     }
                 }}
             >
-                Delete
-            </button>
+                <TrashIcon color={colors.red} />
+            </IconButton>
         </TodoItem>
     );
 };

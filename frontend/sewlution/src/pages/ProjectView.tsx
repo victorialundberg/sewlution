@@ -7,8 +7,14 @@ import {
     ProjectHeader,
     ProjectViewContainer,
 } from "../styles/styledComponents/Containers";
-import { ProjectViewWrapper } from "../styles/styledComponents/Wrappers";
+import {
+    HeaderWrapper,
+    LeftProjectColumn,
+    ProjectViewWrapper,
+    RightProjectColumn,
+} from "../styles/styledComponents/Wrappers";
 import DOMPurify from "dompurify";
+import { Heading } from "../styles/styledComponents/Items";
 
 export const ProjectView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
@@ -25,47 +31,54 @@ export const ProjectView = () => {
 
     return (
         <>
-            <ProjectViewWrapper>
+            <HeaderWrapper>
                 <ProjectHeader>
                     <h1>{project.title}</h1>
-                    {project.link && <p>{project.link}</p>}
+                    {project.link && <Heading>{project.link}</Heading>}
                     {project.deadline && <Separator />}
-                    {project.deadline && <p>{project.deadline}</p>}
+                    {project.deadline && <Heading>{project.deadline}</Heading>}
                 </ProjectHeader>
-                {sanitizedDescription !== "" && (
-                    <ProjectViewContainer>
-                        <h2>Notes</h2>
-                        <p
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizedDescription,
-                            }}
-                        ></p>
-                    </ProjectViewContainer>
-                )}
-                {sanitizedMeasurements !== "" && (
-                    <ProjectViewContainer>
-                        <h2>Measurements</h2>
-                        <p
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizedMeasurements,
-                            }}
-                        ></p>
-                    </ProjectViewContainer>
-                )}
-                {materials.length > 0 && (
-                    <Materials
-                        materials={materials}
-                        showButtons={false}
-                        projectId={project.project_id}
-                    />
-                )}
-                {todos.length > 0 && (
-                    <Todos
-                        showForm={false}
-                        todos={todos}
-                        projectId={project.project_id}
-                    />
-                )}
+            </HeaderWrapper>
+
+            <ProjectViewWrapper>
+                <LeftProjectColumn>
+                    {sanitizedDescription !== "" && (
+                        <ProjectViewContainer>
+                            <Heading>Notes</Heading>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizedDescription,
+                                }}
+                            ></p>
+                        </ProjectViewContainer>
+                    )}
+                    {sanitizedMeasurements !== "" && (
+                        <ProjectViewContainer>
+                            <Heading>Measurements</Heading>
+                            <p
+                                dangerouslySetInnerHTML={{
+                                    __html: sanitizedMeasurements,
+                                }}
+                            ></p>
+                        </ProjectViewContainer>
+                    )}
+                </LeftProjectColumn>
+                <RightProjectColumn>
+                    {materials.length > 0 && (
+                        <Materials
+                            materials={materials}
+                            showButtons={false}
+                            projectId={project.project_id}
+                        />
+                    )}
+                    {todos.length > 0 && (
+                        <Todos
+                            showForm={false}
+                            todos={todos}
+                            projectId={project.project_id}
+                        />
+                    )}
+                </RightProjectColumn>
             </ProjectViewWrapper>
         </>
     );

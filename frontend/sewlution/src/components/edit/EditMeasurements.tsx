@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import { updateMeasurements } from "../../services/projects/edit/updateMeasurementsService";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
+import { Heading } from "../../styles/styledComponents/Items";
 
 interface IEditorProps {
     initialValue: string;
@@ -28,26 +31,33 @@ export const EditMeasurements = (props: IEditorProps) => {
 
     return (
         <>
-            <EditContainer>
-                <h2>Measurements</h2>
-                <Editor
-                    tinymceScriptSrc="/tinymce/tinymce.min.js"
-                    licenseKey="gpl"
-                    initialValue={props.initialValue}
-                    value={content}
-                    onEditorChange={handleEditorChange}
-                    init={{
-                        height: 400,
-                        menubar: false,
-                        toolbar:
-                            "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify",
-                        content_style:
-                            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-                    }}
-                ></Editor>
-                <button disabled={!enabled} type="button" onClick={handleClick}>
+            <EditContainer className="editMeasurements">
+                <Heading>Measurements</Heading>
+                <div>
+                    <Editor
+                        tinymceScriptSrc="/tinymce/tinymce.min.js"
+                        licenseKey="gpl"
+                        initialValue={props.initialValue}
+                        value={content}
+                        onEditorChange={handleEditorChange}
+                        init={{
+                            height: 400,
+                            menubar: false,
+                            toolbar:
+                                "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify",
+                            content_style:
+                                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                        }}
+                    ></Editor>
+                </div>
+                <SubmitButton
+                    $backgroundColor={colors.brown}
+                    disabled={!enabled}
+                    type="button"
+                    onClick={handleClick}
+                >
                     Save
-                </button>
+                </SubmitButton>
             </EditContainer>
         </>
     );

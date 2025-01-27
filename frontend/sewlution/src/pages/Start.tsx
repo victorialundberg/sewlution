@@ -1,6 +1,6 @@
 import { SignInOrUp } from "../components/auth/SignInOrUp";
 import { Logo } from "../styles/logo/Logo";
-import { variables } from "../styles/variables";
+import { colors } from "../styles/colors";
 import { LogoWrapper } from "../styles/logo/LogoWrapper";
 import { StartContainer } from "../styles/styledComponents/Containers";
 
@@ -9,7 +9,7 @@ export const Start = () => {
         <>
             <StartContainer>
                 <LogoWrapper>
-                    <Logo color={variables.logoColorRed}></Logo>
+                    <Logo color={colors.red}></Logo>
                 </LogoWrapper>
 
                 <SignInOrUp></SignInOrUp>

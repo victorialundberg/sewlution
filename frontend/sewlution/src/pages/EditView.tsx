@@ -1,9 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import { IProjectsResponse } from "../models/IProjectsResponse";
-import { ProjectViewWrapper } from "../styles/styledComponents/Wrappers";
+import {
+    LeftProjectColumn,
+    ProjectViewWrapper,
+    RightProjectColumn,
+} from "../styles/styledComponents/Wrappers";
 import { EditTitle } from "../components/edit/EditTitle";
 import { EditDeadline } from "../components/edit/EditDeadline";
-import { AddLink } from "../components/edit/EditLink";
+import { EditLink } from "../components/edit/EditLink";
 import { Materials } from "../components/overview/Materials";
 import { Todos } from "../components/overview/Todos";
 import { EditMeasurements } from "../components/edit/EditMeasurements";
@@ -26,36 +30,40 @@ export const EditView = () => {
     return (
         <>
             <ProjectViewWrapper>
-                <EditTitle
-                    title={project.title}
-                    projectId={project.project_id}
-                ></EditTitle>
-                <EditDescriptions
-                    initialValue={sanitizedDescription}
-                    projectId={project.project_id}
-                ></EditDescriptions>
-                <EditDeadline
-                    deadline={project.deadline}
-                    projectId={project.project_id}
-                ></EditDeadline>
-                <EditMeasurements
-                    initialValue={sanitizedMeasurements}
-                    projectId={project.project_id}
-                ></EditMeasurements>
-                <AddLink
-                    link={project.link}
-                    projectId={project.project_id}
-                ></AddLink>
-                <Materials
-                    materials={materials}
-                    showButtons={true}
-                    projectId={project.project_id}
-                />
-                <Todos
-                    showForm={true}
-                    todos={todos}
-                    projectId={project.project_id}
-                />
+                <LeftProjectColumn>
+                    <EditTitle
+                        title={project.title}
+                        projectId={project.project_id}
+                    ></EditTitle>
+                    <EditDescriptions
+                        initialValue={sanitizedDescription}
+                        projectId={project.project_id}
+                    ></EditDescriptions>
+                    <EditDeadline
+                        deadline={project.deadline}
+                        projectId={project.project_id}
+                    ></EditDeadline>
+                    <EditMeasurements
+                        initialValue={sanitizedMeasurements}
+                        projectId={project.project_id}
+                    ></EditMeasurements>
+                    <EditLink
+                        link={project.link}
+                        projectId={project.project_id}
+                    ></EditLink>
+                </LeftProjectColumn>
+                <RightProjectColumn>
+                    <Materials
+                        materials={materials}
+                        showButtons={true}
+                        projectId={project.project_id}
+                    />
+                    <Todos
+                        showForm={true}
+                        todos={todos}
+                        projectId={project.project_id}
+                    />
+                </RightProjectColumn>
             </ProjectViewWrapper>
         </>
     );

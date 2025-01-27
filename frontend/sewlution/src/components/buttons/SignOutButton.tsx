@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 export const SignOutButton = () => {
     const navigate = useNavigate();
@@ -10,7 +12,9 @@ export const SignOutButton = () => {
 
     return (
         <>
-            <button onClick={handleClick}>Sign out</button>
+            <SubmitButton $backgroundColor={colors.red} onClick={handleClick}>
+                Sign out
+            </SubmitButton>
         </>
     );
 };

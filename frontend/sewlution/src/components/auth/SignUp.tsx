@@ -1,6 +1,19 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+    ErrorMessage,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import {
+    AuthSubmitContainer,
+    StartContainer,
+} from "../../styles/styledComponents/Containers";
+import { colors } from "../../styles/colors";
+import { Logo } from "../../styles/logo/Logo";
+import { LogoWrapper } from "../../styles/logo/LogoWrapper";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
 
 export const SignUp = () => {
     const [username, setUsername] = useState("");
@@ -47,28 +60,44 @@ export const SignUp = () => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button>Sign up</button>
-            </form>
-            {displayError && <span>Username already exists</span>}
-            {validationMessage && (
-                <span>Please enter username and password</span>
-            )}
-        </>
+        <StartContainer>
+            <LogoWrapper>
+                <Logo color={colors.red}></Logo>
+            </LogoWrapper>
+            <AuthSubmitContainer>
+                <form onSubmit={handleSubmit}>
+                    <ProjectLabel htmlFor="username">Username</ProjectLabel>
+                    <InputField
+                        id="username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                            setValidationMessage(false);
+                        }}
+                    />
+                    <ProjectLabel htmlFor="password">Password</ProjectLabel>
+                    <InputField
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            setValidationMessage(false);
+                        }}
+                    />
+                    <SubmitButton $backgroundColor={colors.red}>
+                        Sign up
+                    </SubmitButton>{" "}
+                </form>
+                {displayError && <span>Username already exists</span>}
+                {validationMessage && (
+                    <ErrorMessage>
+                        Please enter username and password
+                    </ErrorMessage>
+                )}
+                <Link to={"/"}>back</Link>
+            </AuthSubmitContainer>
+        </StartContainer>
     );
 };

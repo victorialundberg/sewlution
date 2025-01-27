@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NewProjectModal } from "../modals/NewProjectModal";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 export const NewProjectButton = () => {
     const [showDialog, setShowDialog] = useState(false);
@@ -13,7 +15,9 @@ export const NewProjectButton = () => {
                 setDialogState={setDialogState}
                 showDialog={showDialog}
             ></NewProjectModal>
-            <button onClick={openDialog}>Add new +</button>
+            <SubmitButton $backgroundColor={colors.green} onClick={openDialog}>
+                Add new +
+            </SubmitButton>
         </>
     );
 };

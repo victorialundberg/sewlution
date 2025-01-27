@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 export const TableWrapper = styled.div`
     background-color: white;
-    width: 579px;
+    width: 95%;
     min-height: 150px;
     border-radius: 25px;
-    padding-bottom: 85px;
-    margin-bottom: 1rem;
+    margin: 1rem;
+    padding-bottom: 3rem;
+    > button {
+        background-color: #5e4b45;
+        display: flex;
+        margin: 1.5rem auto -1.5rem auto;
+        color: white;
+    }
 `;
 
 export const Table = styled.table`
@@ -32,6 +38,9 @@ export const MaterialTable = styled(Table)`
         }
     }
     tbody {
+        td {
+            font-size: 1.2rem;
+        }
         tr {
             border-bottom: 1px solid #a8a8b0;
             > :first-child {
@@ -42,8 +51,5 @@ export const MaterialTable = styled(Table)`
                 padding: 0;
             }
         }
-    }
-    tfoot {
-        height: 85px;
     }
 `;

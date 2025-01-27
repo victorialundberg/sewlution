@@ -2,13 +2,20 @@ import { FormEvent, useEffect, useState } from "react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import axios from "axios";
 import { updateLink } from "../../services/projects/edit/updateLinkService";
+import {
+    Heading,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import { colors } from "../../styles/colors";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
 
 interface ILinkProps {
     link: string | undefined;
     projectId: number;
 }
 
-export const AddLink = (props: ILinkProps) => {
+export const EditLink = (props: ILinkProps) => {
     const [link, setLink] = useState(props.link);
     const [linkInput, setLinkInput] = useState("");
     const [changed, setChanged] = useState(false);
@@ -44,18 +51,27 @@ export const AddLink = (props: ILinkProps) => {
 
     return (
         <>
-            <EditContainer>
+            <EditContainer className="editLink">
                 <form onSubmit={handleUpdate}>
-                    <p>Link to moodboard</p>
-                    <h2>{link}</h2>
-                    <input
+                    <ProjectLabel>Link to moodboard</ProjectLabel>
+                    <Heading>{link}</Heading>
+                    <InputField
                         type="text"
                         id="link"
                         name="link"
                         value={linkInput}
                         onChange={(e) => setLinkInput(e.target.value)}
+                        $bordercolor={colors.green}
                     />
-                    {!link ? <button>Add</button> : <button>Update</button>}
+                    {!link ? (
+                        <SubmitButton $backgroundColor={colors.green}>
+                            Add
+                        </SubmitButton>
+                    ) : (
+                        <SubmitButton $backgroundColor={colors.green}>
+                            Update
+                        </SubmitButton>
+                    )}
                 </form>
             </EditContainer>
         </>

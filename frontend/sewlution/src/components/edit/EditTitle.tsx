@@ -2,6 +2,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import axios from "axios";
 import { updateTitle } from "../../services/projects/edit/updateTitleService";
+import {
+    Heading,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface ITitleProps {
     title: string;
@@ -44,19 +51,20 @@ export const EditTitle = (props: ITitleProps) => {
 
     return (
         <>
-            <EditContainer onSubmit={handleUpdate}>
-                <form>
-                    <p>Title</p>
-                    <h2>{title}</h2>
-                    <input
+            <EditContainer className="editTitle">
+                <form onSubmit={handleUpdate}>
+                    <ProjectLabel htmlFor="title">Title</ProjectLabel>
+                    <Heading>{title}</Heading>
+                    <InputField
                         type="text"
                         id="title"
                         name="title"
                         value={titleInput}
                         onChange={(e) => setTitleInput(e.target.value)}
+                        $bordercolor={colors.red}
                     />
 
-                    <button>Update</button>
+                    <SubmitButton>Update</SubmitButton>
                 </form>
             </EditContainer>
         </>

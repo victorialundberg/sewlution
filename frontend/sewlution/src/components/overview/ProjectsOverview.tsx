@@ -1,10 +1,12 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { ProjectOverview } from "./ProjectOverview";
 import { IProject } from "../../models/IProject";
-import { ProjectOverviewContainer } from "../../styles/styledComponents/Containers";
 import { NewProjectButton } from "../buttons/NewProjectButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ProjectViewWrapper } from "../../styles/styledComponents/Wrappers";
+import { ProjectOverviewContainer } from "../../styles/styledComponents/Containers";
+import { Heading } from "../../styles/styledComponents/Items";
 
 export const ProjectsOverview = () => {
     const navigate = useNavigate();
@@ -38,24 +40,28 @@ export const ProjectsOverview = () => {
     };
     return (
         <>
-            <ProjectOverviewContainer>
-                <h1>Active Projects</h1>
-                <ul>
-                    <li>Title</li>
-                    <li>Deadline</li>
-                    <li>Added</li>
-                </ul>
-                <ul>
-                    {projects.map((project) => (
-                        <ProjectOverview
-                            onDelete={onDelete}
-                            project={project}
-                            key={project.project_id}
-                        ></ProjectOverview>
-                    ))}
-                </ul>
-                <NewProjectButton />
-            </ProjectOverviewContainer>
+            <ProjectViewWrapper>
+                <ProjectOverviewContainer>
+                    <Heading>Active Projects</Heading>
+                    <ul className="overviewHeader">
+                        <li>Title</li>
+                        <li>Deadline</li>
+                        <li>Added</li>
+                    </ul>
+                    <ul>
+                        {projects.map((project) => (
+                            <ProjectOverview
+                                onDelete={onDelete}
+                                project={project}
+                                key={project.project_id}
+                            ></ProjectOverview>
+                        ))}
+                    </ul>
+                    <div className="overviewFooter">
+                        <NewProjectButton />
+                    </div>
+                </ProjectOverviewContainer>
+            </ProjectViewWrapper>
         </>
     );
 };

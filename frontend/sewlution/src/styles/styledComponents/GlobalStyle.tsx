@@ -4,9 +4,10 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: "Just Me Again Down Here", serif;
+  color: #3E3E3E;
 }
 html {
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 `;

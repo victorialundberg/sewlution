@@ -4,6 +4,12 @@ import { TodoWrapper } from "../../styles/styledComponents/Wrappers";
 import { Todo } from "./Todo";
 import axios from "axios";
 import { createTodo } from "../../services/todos/createTodoService";
+import {
+    Heading,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
 
 interface ITodoSProps {
     todos: ITodo[];
@@ -59,9 +65,9 @@ export const Todos = (props: ITodoSProps) => {
     };
 
     return (
-        <TodoWrapper>
-            <h2>Todo</h2>
-            <ul className="header">
+        <TodoWrapper className="editTodos">
+            <Heading>Todo</Heading>
+            <ul className="todoHeader">
                 <li>Task</li>
                 <li>Done</li>
                 <li>Delete</li>
@@ -74,14 +80,14 @@ export const Todos = (props: ITodoSProps) => {
             {props.showForm && (
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="todoInput">Todo</label>
-                        <input
+                        <ProjectLabel htmlFor="todoInput">Todo: </ProjectLabel>
+                        <InputField
                             type="text"
                             id="todoInput"
                             value={userInput}
                             onChange={(e) => handleOnChange(e.target.value)}
                         />
-                        <button>Add todo</button>
+                        <SubmitButton>Add todo</SubmitButton>
                         {displayError && (
                             <p>Please provide a name for the todo</p>
                         )}

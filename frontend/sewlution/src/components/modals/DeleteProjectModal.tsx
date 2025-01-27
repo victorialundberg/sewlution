@@ -1,5 +1,8 @@
 import { FormEvent, useEffect, useRef } from "react";
 import { softDeleteProject } from "../../services/projects/deleteProjectService";
+import { ButtonDialog, Heading } from "../../styles/styledComponents/Items";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface IModalProps {
     showDialog: boolean;
@@ -39,13 +42,23 @@ export const DeleteProjectModal = (props: IModalProps) => {
 
     return (
         <>
-            <dialog ref={dialogRef} className="newProjectModal">
+            <ButtonDialog ref={dialogRef}>
                 <form>
-                    <p>Delete Project?</p>
-                    <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleSubmit}>Delete</button>
+                    <Heading>Delete Project?</Heading>
+                    <SubmitButton
+                        $backgroundColor={colors.grey}
+                        onClick={handleClose}
+                    >
+                        Cancel
+                    </SubmitButton>
+                    <SubmitButton
+                        $backgroundColor={colors.green}
+                        onClick={handleSubmit}
+                    >
+                        Delete
+                    </SubmitButton>
                 </form>
-            </dialog>
+            </ButtonDialog>
         </>
     );
 };

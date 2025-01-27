@@ -1,7 +1,7 @@
 import { Logo } from "../../styles/logo/Logo";
 import { LogoWrapperMenu } from "../../styles/logo/LogoWrapper";
 import { MenuWrapper } from "../../styles/styledComponents/Wrappers";
-import { variables } from "../../styles/variables";
+import { colors } from "../../styles/colors";
 import { SignOutButton } from "../buttons/SignOutButton";
 import { Navbar } from "./Navbar";
 
@@ -10,7 +10,7 @@ export const Menu = () => {
         <>
             <MenuWrapper>
                 <LogoWrapperMenu>
-                    <Logo color={variables.logoColorBlack}></Logo>
+                    <Logo color={colors.black}></Logo>
                 </LogoWrapperMenu>
                 <Navbar />
                 <SignOutButton />

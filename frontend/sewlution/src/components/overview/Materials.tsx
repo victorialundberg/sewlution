@@ -44,7 +44,7 @@ export const Materials = (props: IMaterialProps) => {
     };
 
     return (
-        <TableWrapper>
+        <TableWrapper className="editMaterials">
             <MaterialTable>
                 <thead>
                     <tr>
@@ -73,6 +73,7 @@ export const Materials = (props: IMaterialProps) => {
                         />
                     ))}
                 </tbody>
+                <tfoot></tfoot>
             </MaterialTable>
             {props.showButtons && (
                 <AddMaterialButton

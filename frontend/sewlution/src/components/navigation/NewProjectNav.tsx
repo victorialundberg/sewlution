@@ -14,11 +14,9 @@ export const NewProjectNav = () => {
                 setDialogState={setDialogState}
                 showDialog={showDialog}
             ></NewProjectModal>
-            <li>
-                <button onClick={openDialog}>
-                    <span>New Project</span>
-                    <ArrowRight aria-hidden="true" />
-                </button>
+            <li onClick={openDialog} role="button">
+                <span>New Project</span>
+                <ArrowRight aria-hidden="true" />
             </li>
         </>
     );

@@ -1,5 +1,8 @@
 import { IMaterial } from "../../models/IMaterial";
 import { deleteMaterial } from "../../services/materials/deleteMaterialService";
+import { TrashIcon } from "../../styles/icons/TrashIcon";
+import { IconButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface IMaterialProps {
     material: IMaterial;
@@ -20,7 +23,7 @@ export const Material = (props: IMaterialProps) => {
                 </td>
                 {props.showButton && (
                     <td>
-                        <button
+                        <IconButton
                             onClick={async () => {
                                 if (props.material.material_id !== undefined) {
                                     const response = await deleteMaterial(
@@ -32,8 +35,8 @@ export const Material = (props: IMaterialProps) => {
                                 }
                             }}
                         >
-                            -
-                        </button>
+                            <TrashIcon color={colors.brown} />
+                        </IconButton>
                     </td>
                 )}
             </tr>

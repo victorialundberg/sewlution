@@ -16,6 +16,6 @@ export const LogoWrapper = styled.div`
 
 export const LogoWrapperMenu = styled(LogoWrapper)`
     width: 60%;
-    margin: auto;
+    margin: 0 auto;
     padding: 0.6em 0;
 `;

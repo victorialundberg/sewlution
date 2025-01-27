@@ -2,6 +2,13 @@ import { FormEvent, useEffect, useState } from "react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import axios from "axios";
 import { updateDeadline } from "../../services/projects/edit/updateDeadlineService";
+import {
+    Heading,
+    InputField,
+    ProjectLabel,
+} from "../../styles/styledComponents/Items";
+import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface IDeadlineProps {
     deadline: string | undefined;
@@ -44,18 +51,27 @@ export const EditDeadline = (props: IDeadlineProps) => {
 
     return (
         <>
-            <EditContainer>
+            <EditContainer className="editDeadline">
                 <form onSubmit={handleUpdate}>
-                    <p>Deadline</p>
-                    <h2>{deadline}</h2>
-                    <input
+                    <ProjectLabel htmlFor="deadline">Deadline</ProjectLabel>
+                    <Heading>{deadline}</Heading>
+                    <InputField
                         type="text"
                         id="deadline"
                         name="deadline"
                         value={deadlineInput}
                         onChange={(e) => setDeadlineInput(e.target.value)}
+                        $bordercolor={colors.grey}
                     />
-                    {!deadline ? <button>Add</button> : <button>Update</button>}
+                    {!deadline ? (
+                        <SubmitButton $backgroundColor={colors.grey}>
+                            Add
+                        </SubmitButton>
+                    ) : (
+                        <SubmitButton $backgroundColor={colors.grey}>
+                            Update
+                        </SubmitButton>
+                    )}
                 </form>
             </EditContainer>
         </>

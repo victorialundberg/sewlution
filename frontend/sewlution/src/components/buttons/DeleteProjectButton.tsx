@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { DeleteProjectModal } from "../modals/DeleteProjectModal";
+import { IconButton } from "../../styles/styledComponents/Buttons";
+import { TrashIcon } from "../../styles/icons/TrashIcon";
 
 interface IDialogProps {
     projectId: number;
@@ -22,7 +24,9 @@ export const DeleteProjectButton = (props: IDialogProps) => {
                 onDelete={onDelete}
             ></DeleteProjectModal>
 
-            <button onClick={openDialog}>Delete icon</button>
+            <IconButton onClick={openDialog}>
+                <TrashIcon />
+            </IconButton>
         </>
     );
 };
