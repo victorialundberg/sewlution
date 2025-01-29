@@ -18,20 +18,38 @@ export const ProjectOverview = (props: IOverViewProps) => {
     return (
         <>
             <ProjectOverviewItem>
-                <Link to={`/project/${props.project.project_id}`}>
+                <Link
+                    to={`/project/${props.project.project_id}`}
+                    aria-label={`View project: ${props.project.title}`}
+                >
                     {props.project.title}
                 </Link>
-                <span>{props.project.created.slice(0, 10)}</span>
+                <span
+                    aria-label={`Created on ${props.project.created.slice(
+                        0,
+                        10
+                    )}`}
+                >
+                    {props.project.created.slice(0, 10)}
+                </span>
                 {props.project.deadline && (
-                    <span>{props.project.deadline}</span>
+                    <span aria-label={`Deadline: ${props.project.deadline}`}>
+                        {props.project.deadline}
+                    </span>
                 )}
                 <div className="buttonContainer">
-                    <Link to={`/project/${props.project.project_id}`}>
+                    <Link
+                        to={`/project/${props.project.project_id}`}
+                        aria-label={`Open project: ${props.project.title}`}
+                    >
                         <IconButton>
                             <OpenIcon />
                         </IconButton>
                     </Link>
-                    <Link to={`/edit/${props.project.project_id}`}>
+                    <Link
+                        to={`/edit/${props.project.project_id}`}
+                        aria-label={`Edit project: ${props.project.title}`}
+                    >
                         <IconButton>
                             <EditIcon />
                         </IconButton>
@@ -39,6 +57,7 @@ export const ProjectOverview = (props: IOverViewProps) => {
                     <DeleteProjectButton
                         onDelete={onDelete}
                         projectId={props.project.project_id}
+                        aria-label={`Delete project: ${props.project.title}`}
                     />
                 </div>
             </ProjectOverviewItem>

@@ -12,7 +12,11 @@ export const SignOutButton = () => {
 
     return (
         <>
-            <ActionButton $backgroundColor={colors.red} onClick={handleClick}>
+            <ActionButton
+                $backgroundColor={colors.red}
+                onClick={handleClick}
+                aria-label="Sign out"
+            >
                 Sign out
             </ActionButton>
         </>

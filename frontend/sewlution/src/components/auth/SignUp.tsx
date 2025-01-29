@@ -66,7 +66,10 @@ export const SignUp = () => {
                 <Logo color={colors.red}></Logo>
             </LogoWrapper>
             <AuthSubmitContainer>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} aria-labelledby="signup-heading">
+                    <h1 id="signup-heading" hidden>
+                        Sign Up
+                    </h1>
                     <ProjectLabel htmlFor="username">Username</ProjectLabel>
                     <InputField
                         id="username"
@@ -76,6 +79,10 @@ export const SignUp = () => {
                             setUsername(e.target.value);
                             setValidationMessage(false);
                         }}
+                        aria-required="true"
+                        aria-describedby={
+                            displayError ? "error-message" : undefined
+                        }
                     />
                     <ProjectLabel htmlFor="password">Password</ProjectLabel>
                     <InputField
@@ -86,20 +93,33 @@ export const SignUp = () => {
                             setPassword(e.target.value);
                             setValidationMessage(false);
                         }}
+                        aria-required="true"
+                        aria-describedby={
+                            displayError ? "error-message" : undefined
+                        }
                     />
-                    <ActionButton $backgroundColor={colors.red}>
+                    <ActionButton
+                        $backgroundColor={colors.red}
+                        aria-label="Sign up to Sewlution"
+                    >
                         Sign up
-                    </ActionButton>{" "}
+                    </ActionButton>
                 </form>
-                {displayError && <span>Username already exists</span>}
+                {displayError && (
+                    <span id="error-message" role="alert">
+                        Username already exists
+                    </span>
+                )}
                 {validationMessage && (
-                    <ErrorMessage>
+                    <ErrorMessage id="validation-message" role="alert">
                         Please enter username and password
                     </ErrorMessage>
                 )}
             </AuthSubmitContainer>
             <AuthFooter>
-                <Link to={"/"}>back</Link>
+                <Link to={"/"} aria-label="Go back to the homepage">
+                    back
+                </Link>
             </AuthFooter>
         </StartContainer>
     );

@@ -1,6 +1,9 @@
 export const ArrowRight = () => {
     return (
         <svg
+            role="img"
+            aria-hidden="true"
+            focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -11,7 +14,6 @@ export const ArrowRight = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="lucide lucide-arrow-right"
-            role="img"
         >
             <title>Arrow pointing to the right</title>
             <path d="M5 12h14" />

@@ -24,7 +24,7 @@ export const DeleteProjectButton = (props: IDialogProps) => {
                 onDelete={onDelete}
             ></DeleteProjectModal>
 
-            <IconButton onClick={openDialog}>
+            <IconButton onClick={openDialog} aria-label="Delete this project">
                 <TrashIcon />
             </IconButton>
         </>

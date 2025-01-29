@@ -4,6 +4,9 @@ import { colors } from "../colors";
 export const CloseIcon = (props: IIconProps) => {
     return (
         <svg
+            role="img"
+            aria-hidden="true"
+            focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             width="40"
             height="40"

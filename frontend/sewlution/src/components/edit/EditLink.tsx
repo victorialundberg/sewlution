@@ -52,8 +52,10 @@ export const EditLink = (props: ILinkProps) => {
     return (
         <>
             <EditContainer className="editLink">
-                <form onSubmit={handleUpdate}>
-                    <ProjectLabel>Link to moodboard</ProjectLabel>
+                <form onSubmit={handleUpdate} aria-labelledby="link-label">
+                    <ProjectLabel htmlFor="link" id="link-label">
+                        Link to moodboard
+                    </ProjectLabel>
                     <Heading>{link}</Heading>
                     <InputField
                         type="text"
@@ -64,11 +66,17 @@ export const EditLink = (props: ILinkProps) => {
                         $bordercolor={colors.green}
                     />
                     {!link ? (
-                        <ActionButton $backgroundColor={colors.green}>
+                        <ActionButton
+                            $backgroundColor={colors.green}
+                            aria-label="Add link to project"
+                        >
                             Add
                         </ActionButton>
                     ) : (
-                        <ActionButton $backgroundColor={colors.green}>
+                        <ActionButton
+                            $backgroundColor={colors.green}
+                            aria-label="Update project link"
+                        >
                             Update
                         </ActionButton>
                     )}

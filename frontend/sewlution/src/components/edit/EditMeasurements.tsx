@@ -55,6 +55,7 @@ export const EditMeasurements = (props: IEditorProps) => {
                     disabled={!enabled}
                     type="button"
                     onClick={handleClick}
+                    aria-label="Save changes"
                 >
                     Save
                 </ActionButton>

@@ -8,13 +8,19 @@ export const Navbar = () => {
             <NavbarWrapper>
                 <NewProjectNav />
                 <li>
-                    <Link to={"/overview"}>Active Projects</Link>
+                    <Link to={"/overview"} aria-label="Go to active project">
+                        Active Projects
+                    </Link>
                 </li>
                 <li>
-                    <Link to={"/deleted"}>Deleted Projects</Link>
+                    <Link to={"/deleted"} aria-label="Go to deleted projects">
+                        Deleted Projects
+                    </Link>
                 </li>
                 <li>
-                    <Link to={"/about"}>About Sewlution</Link>
+                    <Link to={"/about"} aria-label="Go to about Sewlution">
+                        About Sewlution
+                    </Link>
                 </li>
             </NavbarWrapper>
         </>

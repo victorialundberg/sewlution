@@ -43,17 +43,21 @@ export const DeleteProjectModal = (props: IModalProps) => {
     return (
         <>
             <ButtonDialog ref={dialogRef}>
-                <form>
-                    <Heading>Delete Project?</Heading>
+                <form aria-labelledby="dialog-heading">
+                    <Heading id="dialog-heading">Delete Project?</Heading>
                     <ActionButton
+                        type="button"
                         $backgroundColor={colors.grey}
                         onClick={handleClose}
+                        aria-label="CLose dialog"
                     >
                         Cancel
                     </ActionButton>
                     <ActionButton
+                        type="submit"
                         $backgroundColor={colors.green}
                         onClick={handleSubmit}
+                        aria-label="Confirm delete project"
                     >
                         Delete
                     </ActionButton>

@@ -43,6 +43,7 @@ export const Todo = (props: ITodoProps) => {
                         props.onChange();
                     }
                 }}
+                aria-label="Delete todo"
             >
                 <TrashIcon color={colors.red} />
             </IconButton>

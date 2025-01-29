@@ -23,17 +23,27 @@ export const ProjectOverviewMobile = (props: IOverViewProps) => {
 
     return (
         <ProjectOverviewItemMobile>
-            <ActionButton onClick={props.onToggle} aria-expanded={props.isOpen}>
+            <ActionButton
+                onClick={props.onToggle}
+                aria-expanded={props.isOpen}
+                aria-label="Toggle options view"
+            >
                 {props.project.title}
             </ActionButton>
             {props.isOpen && (
                 <ButtonContainerMobile>
-                    <Link to={`/project/${props.project.project_id}`}>
+                    <Link
+                        to={`/project/${props.project.project_id}`}
+                        aria-label={`Open project: ${props.project.title}`}
+                    >
                         <IconButton>
                             <OpenIcon />
                         </IconButton>
                     </Link>
-                    <Link to={`/edit/${props.project.project_id}`}>
+                    <Link
+                        to={`/edit/${props.project.project_id}`}
+                        aria-label={`Edit project: ${props.project.title}`}
+                    >
                         <IconButton>
                             <EditIcon />
                         </IconButton>
@@ -41,6 +51,7 @@ export const ProjectOverviewMobile = (props: IOverViewProps) => {
                     <DeleteProjectButton
                         onDelete={onDelete}
                         projectId={props.project.project_id}
+                        aria-label={`Delete project: ${props.project.title}`}
                     />
                 </ButtonContainerMobile>
             )}

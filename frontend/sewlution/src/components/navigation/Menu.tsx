@@ -32,37 +32,43 @@ export const Menu = () => {
 
     return (
         <>
-            <NavHeader>
+            <NavHeader role="banner">
                 <HeaderButton
                     onClick={toggleMenu}
                     aria-expanded={isOpen}
                     aria-controls="menu"
+                    aria-label="Open main menu"
                 >
                     <MenuIcon></MenuIcon>
                 </HeaderButton>
                 <LogoWrapper>
-                    <Logo color={colors.grey}></Logo>
+                    <Logo color={colors.grey} aria-hidden="true"></Logo>
                 </LogoWrapper>
-                <HeaderButton onClick={signOut}>
+                <HeaderButton onClick={signOut} aria-label="Sign out">
                     <SignOutIcon></SignOutIcon>
                 </HeaderButton>
             </NavHeader>
             <MenuOverlay
                 className={isOpen ? "open" : ""}
                 onClick={() => setIsOpen(false)}
+                aria-hidden="true"
             />
             <MenuWrapper
                 id="menu"
                 className={isOpen ? "open" : ""}
                 role="navigation"
                 aria-label="Main menu"
+                aria-hidden={!isOpen}
                 onClick={() => setIsOpen(false)}
             >
-                <IconButton onClick={() => setIsOpen(false)}>
+                <IconButton
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                >
                     <CloseIcon />
                 </IconButton>
                 <LogoWrapperMenu>
-                    <Logo color={colors.grey}></Logo>
+                    <Logo color={colors.grey} aria-hidden="true"></Logo>
                 </LogoWrapperMenu>
                 <Navbar />
                 <SignOutButton />

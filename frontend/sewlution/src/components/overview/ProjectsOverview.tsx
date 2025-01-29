@@ -51,13 +51,16 @@ export const ProjectsOverview = () => {
             <ProjectOverviewWrapper>
                 <ProjectOverviewContainer>
                     <Heading>Active Projects</Heading>
-                    <ul className="overviewHeader">
+                    <ul
+                        className="overviewHeader"
+                        aria-label="Project overview headers"
+                    >
                         <li>Title</li>
                         <li>Added</li>
                         <li>Deadline</li>
                         <li>Options</li>
                     </ul>
-                    <ul>
+                    <ul aria-label="Project list">
                         {projects.map((project) =>
                             isMobile ? (
                                 <ProjectOverviewMobile

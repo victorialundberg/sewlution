@@ -52,8 +52,10 @@ export const EditDeadline = (props: IDeadlineProps) => {
     return (
         <>
             <EditContainer className="editDeadline">
-                <form onSubmit={handleUpdate}>
-                    <ProjectLabel htmlFor="deadline">Deadline</ProjectLabel>
+                <form onSubmit={handleUpdate} aria-labelledby="deadline-label">
+                    <ProjectLabel htmlFor="deadline" id="deadline-label">
+                        Deadline
+                    </ProjectLabel>
                     <Heading>{deadline}</Heading>
                     <InputField
                         type="text"
@@ -64,11 +66,17 @@ export const EditDeadline = (props: IDeadlineProps) => {
                         $bordercolor={colors.grey}
                     />
                     {!deadline ? (
-                        <ActionButton $backgroundColor={colors.grey}>
+                        <ActionButton
+                            $backgroundColor={colors.grey}
+                            aria-label="Add deadline to project"
+                        >
                             Add
                         </ActionButton>
                     ) : (
-                        <ActionButton $backgroundColor={colors.grey}>
+                        <ActionButton
+                            $backgroundColor={colors.grey}
+                            aria-label="Update project deadline"
+                        >
                             Update
                         </ActionButton>
                     )}

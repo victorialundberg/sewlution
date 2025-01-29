@@ -5,6 +5,7 @@ import { Todo } from "./Todo";
 import axios from "axios";
 import { createTodo } from "../../services/todos/createTodoService";
 import {
+    ErrorMessage,
     Heading,
     InputField,
     ProjectLabel,
@@ -67,29 +68,37 @@ export const Todos = (props: ITodoSProps) => {
     return (
         <TodoWrapper className="editTodos">
             <Heading>Todo</Heading>
-            <ul className="todoHeader">
+            <ul className="todoHeader" aria-label="Todo headers">
                 <li>Task</li>
                 <li>Done</li>
                 <li>Delete</li>
             </ul>
-            <ul>
+            <ul aria-label="Todo list">
                 {todos.map((todo, i) => (
                     <Todo onChange={handleChange} todo={todo} key={i} />
                 ))}
             </ul>
             {props.showForm && (
                 <div>
-                    <form onSubmit={handleSubmit}>
-                        <ProjectLabel htmlFor="todoInput">Todo: </ProjectLabel>
+                    <form onSubmit={handleSubmit} aria-labelledby="todo-label">
+                        <ProjectLabel htmlFor="todoInput" id="todo-label">
+                            Todo:{" "}
+                        </ProjectLabel>
                         <InputField
                             type="text"
                             id="todoInput"
                             value={userInput}
                             onChange={(e) => handleOnChange(e.target.value)}
+                            required
+                            aria-required="true"
                         />
-                        <ActionButton>Add todo</ActionButton>
+                        <ActionButton aria-label="Add todo to list">
+                            Add todo
+                        </ActionButton>
                         {displayError && (
-                            <p>Please provide a name for the todo</p>
+                            <ErrorMessage role="alert">
+                                Please provide a name for the todo
+                            </ErrorMessage>
                         )}
                     </form>
                 </div>

@@ -5,6 +5,9 @@ interface ILogoProps {
 export const Logo = (props: ILogoProps) => {
     return (
         <svg
+            role="img"
+            aria-hidden="true"
+            focusable="false"
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 474.000000 104.000000"

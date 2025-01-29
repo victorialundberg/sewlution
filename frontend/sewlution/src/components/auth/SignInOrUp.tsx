@@ -7,13 +7,16 @@ export const SignInOrUp = () => {
     return (
         <>
             <AuthContainer>
-                <Link to={"/signin"}>
+                <h1 hidden>Sign in or sign up to Sewlution</h1>
+                <Link to={"/signin"} aria-label="Go to sign-in page">
                     <ActionButton $backgroundColor={colors.red}>
                         Sign in
                     </ActionButton>
                 </Link>
-                <span>or</span>
-                <Link to={"/signup"}>Sign up</Link>
+                <span role="presentation">or</span>
+                <Link to={"/signup"} aria-label="Go to sign-up page">
+                    Sign up
+                </Link>
             </AuthContainer>
         </>
     );

@@ -52,8 +52,10 @@ export const EditTitle = (props: ITitleProps) => {
     return (
         <>
             <EditContainer className="editTitle">
-                <form onSubmit={handleUpdate}>
-                    <ProjectLabel htmlFor="title">Title</ProjectLabel>
+                <form onSubmit={handleUpdate} aria-labelledby="title-label">
+                    <ProjectLabel htmlFor="title" id="title-label">
+                        Title
+                    </ProjectLabel>
                     <Heading>{title}</Heading>
                     <InputField
                         type="text"
@@ -64,7 +66,9 @@ export const EditTitle = (props: ITitleProps) => {
                         $bordercolor={colors.red}
                     />
 
-                    <ActionButton>Update</ActionButton>
+                    <ActionButton aria-label="Update project title">
+                        Update
+                    </ActionButton>
                 </form>
             </EditContainer>
         </>

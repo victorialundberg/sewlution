@@ -91,8 +91,8 @@ export const AddMaterialModal = (props: IModalProps) => {
     return (
         <>
             <MaterialDialog ref={dialogRef}>
-                <form onSubmit={handleSubmit}>
-                    <Heading>Add Material</Heading>
+                <form onSubmit={handleSubmit} aria-labelledby="dialog-heading">
+                    <Heading id="dialog-heading">Add Material</Heading>
                     <ProjectLabel htmlFor="material">Material</ProjectLabel>
                     <InputField
                         type="text"
@@ -100,9 +100,13 @@ export const AddMaterialModal = (props: IModalProps) => {
                         name="material"
                         value={material.material}
                         onChange={handleChange}
+                        required
+                        aria-required="true"
                     />
                     {displayError && (
-                        <ErrorMessage>Please provide a title!</ErrorMessage>
+                        <ErrorMessage role="alert">
+                            Please provide a material
+                        </ErrorMessage>
                     )}
                     <ProjectLabel htmlFor="quantity">Amount</ProjectLabel>
                     <InputField
@@ -129,6 +133,7 @@ export const AddMaterialModal = (props: IModalProps) => {
                         onChange={handleChange}
                     />
                     <ActionButton
+                        type="button"
                         $backgroundColor={colors.grey}
                         onClick={handleClose}
                         aria-label="Close dialog"
@@ -136,7 +141,9 @@ export const AddMaterialModal = (props: IModalProps) => {
                         Cancel
                     </ActionButton>
                     <ActionButton
+                        type="submit"
                         $backgroundColor={colors.brown}
+                        disabled={material.material.trim() === ""}
                         aria-disabled={material.material.trim() === ""}
                         aria-label="Add material to table"
                     >

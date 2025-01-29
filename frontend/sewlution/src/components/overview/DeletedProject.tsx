@@ -32,22 +32,26 @@ export const DeletedProject = (props: IDeletedProjectProps) => {
         <>
             <DeletedProjectContainer>
                 <Heading>{props.project.title}</Heading>
-                <ActionButton
-                    $backgroundColor={colors.lightGreen}
-                    $color={colors.black}
-                    type="button"
-                    onClick={handleRestore}
-                >
-                    Restore
-                </ActionButton>
-                <ActionButton
-                    $backgroundColor={colors.lightGrey}
-                    $color={colors.black}
-                    type="button"
-                    onClick={handleDelete}
-                >
-                    Delete
-                </ActionButton>
+                <div aria-live="polite">
+                    <ActionButton
+                        $backgroundColor={colors.lightGreen}
+                        $color={colors.black}
+                        type="button"
+                        onClick={handleRestore}
+                        aria-label={`Restore project ${props.project.title}`}
+                    >
+                        Restore
+                    </ActionButton>
+                    <ActionButton
+                        $backgroundColor={colors.lightGrey}
+                        $color={colors.black}
+                        type="button"
+                        onClick={handleDelete}
+                        aria-label={`Permanently delete project ${props.project.title}`}
+                    >
+                        Delete
+                    </ActionButton>
+                </div>
             </DeletedProjectContainer>
         </>
     );

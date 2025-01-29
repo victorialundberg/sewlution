@@ -43,6 +43,7 @@ export const Material = (props: IMaterialProps) => {
                                     }
                                 }
                             }}
+                            aria-label={`Delete material: ${props.material.material}`}
                         >
                             <TrashIcon color={colors.brown} />
                         </IconButton>

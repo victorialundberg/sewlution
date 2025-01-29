@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { AddMaterialModal } from "../modals/AddMaterialModal";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
+import { colors } from "../../styles/colors";
 
 interface IDialogProps {
     projectId: number;
@@ -23,7 +25,13 @@ export const AddMaterialButton = (props: IDialogProps) => {
                 onAdded={handleSuccess}
             ></AddMaterialModal>
 
-            <button onClick={openDialog}>Add new material</button>
+            <ActionButton
+                $backgroundColor={colors.brown}
+                onClick={openDialog}
+                aria-label="Add new material to table"
+            >
+                Add new material
+            </ActionButton>
         </>
     );
 };

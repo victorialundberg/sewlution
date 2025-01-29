@@ -63,9 +63,9 @@ export const NewProjectModal = (props: IModalProps) => {
     return (
         <>
             <FormDialog ref={dialogRef}>
-                <form>
+                <form aria-labelledby="project-label">
                     <Heading>New Project</Heading>
-                    <ProjectLabel htmlFor="projectTitle">
+                    <ProjectLabel id="project-label" htmlFor="projectTitle">
                         Add Title
                     </ProjectLabel>
                     <InputField
@@ -77,6 +77,8 @@ export const NewProjectModal = (props: IModalProps) => {
                             setProjectTitle(e.target.value);
                             setDisplayError(false);
                         }}
+                        required
+                        aria-required="true"
                     />
                     <ActionButton
                         $backgroundColor={colors.grey}
@@ -93,7 +95,9 @@ export const NewProjectModal = (props: IModalProps) => {
                         Create
                     </ActionButton>
                     {displayError && (
-                        <ErrorMessage>Please provide a title!</ErrorMessage>
+                        <ErrorMessage role="alert">
+                            Please provide a title!
+                        </ErrorMessage>
                     )}
                 </form>
             </FormDialog>

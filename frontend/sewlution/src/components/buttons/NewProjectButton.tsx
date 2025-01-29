@@ -15,7 +15,11 @@ export const NewProjectButton = () => {
                 setDialogState={setDialogState}
                 showDialog={showDialog}
             ></NewProjectModal>
-            <ActionButton $backgroundColor={colors.green} onClick={openDialog}>
+            <ActionButton
+                $backgroundColor={colors.green}
+                onClick={openDialog}
+                aria-label="Create a new project"
+            >
                 Add new +
             </ActionButton>
         </>

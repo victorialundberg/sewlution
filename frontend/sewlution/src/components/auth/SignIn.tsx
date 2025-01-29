@@ -67,7 +67,11 @@ export const SignIn = () => {
                 <Logo color={colors.red}></Logo>
             </LogoWrapper>
             <AuthSubmitContainer>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} aria-labelledby="signin-heading">
+                    <h1 id="signin-heading" hidden>
+                        Sign In
+                    </h1>
+
                     <ProjectLabel htmlFor="username">Username</ProjectLabel>
                     <InputField
                         id="username"
@@ -77,6 +81,10 @@ export const SignIn = () => {
                             setUsername(e.target.value);
                             setValidationMessage(false);
                         }}
+                        aria-required="true"
+                        aria-describedby={
+                            displayError ? "error-message" : undefined
+                        }
                     />
                     <ProjectLabel htmlFor="password">Password</ProjectLabel>
                     <InputField
@@ -87,21 +95,34 @@ export const SignIn = () => {
                             setPassword(e.target.value);
                             setValidationMessage(false);
                         }}
+                        aria-required="true"
+                        aria-describedby={
+                            displayError ? "error-message" : undefined
+                        }
                     />
-                    <ActionButton $backgroundColor={colors.red}>
+                    <ActionButton
+                        $backgroundColor={colors.red}
+                        aria-label="Sign in to your account"
+                    >
                         Sign in
                     </ActionButton>
                 </form>
-                {displayError && <span>Sign in failed</span>}
+                {displayError && (
+                    <span id="error-message" role="alert">
+                        Sign in failed
+                    </span>
+                )}
                 {validationMessage && (
-                    <ErrorMessage>
+                    <ErrorMessage id="validation-message" role="alert">
                         Please enter username and password
                     </ErrorMessage>
                 )}
             </AuthSubmitContainer>
             <AuthFooter>
-                <Link to={"/"}>back</Link>
-            </AuthFooter>{" "}
+                <Link to={"/"} aria-label="Go back to the homepage">
+                    back
+                </Link>
+            </AuthFooter>
         </StartContainer>
     );
 };
