@@ -7,7 +7,7 @@ import {
     InputField,
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 interface IDeadlineProps {
@@ -64,13 +64,13 @@ export const EditDeadline = (props: IDeadlineProps) => {
                         $bordercolor={colors.grey}
                     />
                     {!deadline ? (
-                        <SubmitButton $backgroundColor={colors.grey}>
+                        <ActionButton $backgroundColor={colors.grey}>
                             Add
-                        </SubmitButton>
+                        </ActionButton>
                     ) : (
-                        <SubmitButton $backgroundColor={colors.grey}>
+                        <ActionButton $backgroundColor={colors.grey}>
                             Update
-                        </SubmitButton>
+                        </ActionButton>
                     )}
                 </form>
             </EditContainer>

@@ -27,6 +27,26 @@ export const ProjectOverviewItem = styled.li`
         button {
             margin: 0 0.4rem;
         }
+        @media (max-width: 1024px) {
+            justify-content: end;
+        }
+    }
+    @media (max-width: 1024px) {
+        grid-template-columns: 35% 20% 20% 25%;
+    }
+`;
+
+export const ProjectOverviewItemMobile = styled.li`
+    list-style: none;
+    text-align: center;
+    margin-bottom: 1rem;
+    > button {
+        color: #3e3e3e;
+        font-size: 2rem;
+        padding: 0.5rem 0 0 0;
+        border-radius: 25px;
+        width: 80%;
+        background-color: #d4e2d9;
     }
 `;
 
@@ -108,6 +128,9 @@ export const Heading = styled.p`
     margin: 0;
     padding-bottom: 1rem;
     text-align: center;
+    @media (max-width: 450px) {
+        font-size: 1.5rem;
+    }
 `;
 
 export const ErrorMessage = styled.p`
@@ -123,6 +146,9 @@ export const Dialog = styled.dialog`
     &::backdrop {
         background-color: black;
         opacity: 50%;
+    }
+    @media (max-width: 650px) {
+        width: 75vw;
     }
 `;
 
@@ -145,6 +171,9 @@ export const FormDialog = styled(Dialog)`
             margin-top: 1rem;
             justify-self: center;
             width: 70%;
+            @media (max-width: 400px) {
+                width: 90%;
+            }
         }
     }
 `;
@@ -166,6 +195,27 @@ export const ButtonDialog = styled(Dialog)`
             margin-top: 1rem;
             justify-self: center;
             width: 70%;
+            @media (max-width: 400px) {
+                width: 90%;
+            }
         }
+    }
+`;
+
+export const MenuOverlay = styled.div`
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: none;
+
+    &.open {
+        display: block;
+    }
+
+    @media (min-width: 1024px) {
+        display: none;
     }
 `;

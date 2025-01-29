@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 export const SignOutButton = () => {
@@ -12,9 +12,9 @@ export const SignOutButton = () => {
 
     return (
         <>
-            <SubmitButton $backgroundColor={colors.red} onClick={handleClick}>
+            <ActionButton $backgroundColor={colors.red} onClick={handleClick}>
                 Sign out
-            </SubmitButton>
+            </ActionButton>
         </>
     );
 };

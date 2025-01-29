@@ -9,7 +9,7 @@ import {
     InputField,
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 
 interface ITodoSProps {
     todos: ITodo[];
@@ -87,7 +87,7 @@ export const Todos = (props: ITodoSProps) => {
                             value={userInput}
                             onChange={(e) => handleOnChange(e.target.value)}
                         />
-                        <SubmitButton>Add todo</SubmitButton>
+                        <ActionButton>Add todo</ActionButton>
                         {displayError && (
                             <p>Please provide a name for the todo</p>
                         )}

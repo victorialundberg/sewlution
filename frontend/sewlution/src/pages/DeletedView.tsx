@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {
     DeletedProjectWrapper,
-    ProjectViewWrapper,
+    ProjectOverviewWrapper,
 } from "../styles/styledComponents/Wrappers";
 
 export const DeletedView = () => {
@@ -42,7 +42,7 @@ export const DeletedView = () => {
     };
 
     return (
-        <ProjectViewWrapper>
+        <ProjectOverviewWrapper>
             <ProjectOverviewContainer>
                 <DeletedProjectWrapper>
                     <h1>Deleted Projects</h1>
@@ -56,6 +56,6 @@ export const DeletedView = () => {
                     ))}
                 </DeletedProjectWrapper>
             </ProjectOverviewContainer>
-        </ProjectViewWrapper>
+        </ProjectOverviewWrapper>
     );
 };

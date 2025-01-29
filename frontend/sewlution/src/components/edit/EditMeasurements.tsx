@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import { updateMeasurements } from "../../services/projects/edit/updateMeasurementsService";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 import { Heading } from "../../styles/styledComponents/Items";
 
@@ -50,14 +50,14 @@ export const EditMeasurements = (props: IEditorProps) => {
                         }}
                     ></Editor>
                 </div>
-                <SubmitButton
+                <ActionButton
                     $backgroundColor={colors.brown}
                     disabled={!enabled}
                     type="button"
                     onClick={handleClick}
                 >
                     Save
-                </SubmitButton>
+                </ActionButton>
             </EditContainer>
         </>
     );

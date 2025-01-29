@@ -1,8 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { IProjectsResponse } from "../models/IProjectsResponse";
 import {
+    EditVievWrapper,
     LeftProjectColumn,
-    ProjectViewWrapper,
     RightProjectColumn,
 } from "../styles/styledComponents/Wrappers";
 import { EditTitle } from "../components/edit/EditTitle";
@@ -13,6 +13,9 @@ import { Todos } from "../components/overview/Todos";
 import { EditMeasurements } from "../components/edit/EditMeasurements";
 import DOMPurify from "dompurify";
 import { EditDescriptions } from "../components/edit/EditDescription";
+import { colors } from "../styles/colors";
+import { ActionButton } from "../styles/styledComponents/Buttons";
+import { ProjectViewFooter } from "../styles/styledComponents/Containers";
 
 export const EditView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
@@ -29,7 +32,7 @@ export const EditView = () => {
 
     return (
         <>
-            <ProjectViewWrapper>
+            <EditVievWrapper>
                 <LeftProjectColumn>
                     <EditTitle
                         title={project.title}
@@ -64,7 +67,14 @@ export const EditView = () => {
                         projectId={project.project_id}
                     />
                 </RightProjectColumn>
-            </ProjectViewWrapper>
+            </EditVievWrapper>
+            <ProjectViewFooter>
+                <Link to={`/project/${project.project_id}`}>
+                    <ActionButton $backgroundColor={colors.grey}>
+                        View project
+                    </ActionButton>
+                </Link>
+            </ProjectViewFooter>
         </>
     );
 };

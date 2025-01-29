@@ -8,7 +8,7 @@ import {
     MaterialDialog,
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 interface IModalProps {
@@ -128,20 +128,20 @@ export const AddMaterialModal = (props: IModalProps) => {
                         value={material.unit_price}
                         onChange={handleChange}
                     />
-                    <SubmitButton
+                    <ActionButton
                         $backgroundColor={colors.grey}
                         onClick={handleClose}
                         aria-label="Close dialog"
                     >
                         Cancel
-                    </SubmitButton>
-                    <SubmitButton
+                    </ActionButton>
+                    <ActionButton
                         $backgroundColor={colors.brown}
                         aria-disabled={material.material.trim() === ""}
                         aria-label="Add material to table"
                     >
                         Add to table
-                    </SubmitButton>
+                    </ActionButton>
                 </form>
             </MaterialDialog>
         </>

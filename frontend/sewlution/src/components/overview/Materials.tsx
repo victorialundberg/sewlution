@@ -7,6 +7,7 @@ import {
 import { AddMaterialButton } from "../buttons/AddMaterialButton";
 import { Material } from "./Material";
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
 
 interface IMaterialProps {
     materials: IMaterial[];
@@ -18,6 +19,7 @@ export const Materials = (props: IMaterialProps) => {
     const [materials, setMaterials] = useState<IMaterial[]>(props.materials);
     const [changed, setChanged] = useState(false);
     const projectId = props.projectId;
+    const isMobile = useMediaQuery({ maxWidth: 450 });
 
     useEffect(() => {
         const getMaterials = async (projectId: number) => {
@@ -47,19 +49,33 @@ export const Materials = (props: IMaterialProps) => {
         <TableWrapper className="editMaterials">
             <MaterialTable>
                 <thead>
-                    <tr>
-                        {props.showButtons ? (
-                            <th colSpan={6}>Materials</th>
-                        ) : (
-                            <th colSpan={5}>Materials</th>
-                        )}
-                    </tr>
+                    {!isMobile ? (
+                        <tr>
+                            {props.showButtons ? (
+                                <th colSpan={6}>Materials</th>
+                            ) : (
+                                <th colSpan={5}>Materials</th>
+                            )}
+                        </tr>
+                    ) : (
+                        <tr>
+                            {props.showButtons ? (
+                                <th colSpan={4}>Materials</th>
+                            ) : (
+                                <th colSpan={3}>Materials</th>
+                            )}
+                        </tr>
+                    )}
                     <tr>
                         <th>Material</th>
                         <th>Amount</th>
                         <th>Unit</th>
-                        <th>Price</th>
-                        <th>Total</th>
+                        {!isMobile && (
+                            <>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </>
+                        )}
                         {props.showButtons && <th>Delete</th>}
                     </tr>
                 </thead>

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TableWrapper = styled.div`
     background-color: white;
-    width: 95%;
+    width: 90%;
     min-height: 150px;
     border-radius: 25px;
     margin: 1rem;
@@ -12,6 +12,10 @@ export const TableWrapper = styled.div`
         display: flex;
         margin: 1.5rem auto -1.5rem auto;
         color: white;
+    }
+    @media (max-width: 800px) {
+        margin: auto;
+        width: 100%;
     }
 `;
 

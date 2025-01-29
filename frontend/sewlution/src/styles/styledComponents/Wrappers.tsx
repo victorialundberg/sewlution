@@ -8,6 +8,36 @@ export const MenuWrapper = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
+    z-index: 2;
+
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+
+    @media (min-width: 1024px) {
+        transform: translateX(0);
+    }
+    @media (max-width: 1024px) {
+        width: 30%;
+    }
+    @media (max-width: 720px) {
+        width: 50%;
+    }
+    @media (max-width: 400px) {
+        width: 100vw;
+    }
+
+    &.open {
+        transform: translateX(0);
+    }
+
+    > :first-child {
+        justify-content: center;
+        margin: 1rem auto;
+        width: 90%;
+        @media (min-width: 1024px) {
+            display: none;
+        }
+    }
     > :last-child {
         font-size: 1.5rem;
         width: fit-content;
@@ -55,7 +85,7 @@ export const NavbarWrapper = styled.div`
 
 export const TodoWrapper = styled.div`
     background-color: white;
-    width: 95%;
+    width: 90%;
     min-height: 150px;
     border-radius: 25px;
     padding-bottom: 3rem;
@@ -67,6 +97,7 @@ export const TodoWrapper = styled.div`
     .todoHeader {
         height: 38px;
         margin: 0;
+        margin-top: -1rem;
         padding: 0;
         display: grid;
         grid-template-columns: 70% 15% 15%;
@@ -77,6 +108,9 @@ export const TodoWrapper = styled.div`
             font-size: 1.5rem;
             display: flex;
             align-items: center;
+            @media (max-width: 460px) {
+                font-size: 1rem;
+            }
         }
         :first-child {
             padding-left: 2rem;
@@ -107,12 +141,24 @@ export const TodoWrapper = styled.div`
             padding-top: 1.5rem;
             margin-bottom: -1.5rem;
             width: 80%;
+            @media (max-width: 460px) {
+                flex-direction: column;
+                text-align: center;
+            }
             button {
                 width: 25%;
                 margin-left: 1rem;
                 background-color: #5c2332;
+                @media (max-width: 460px) {
+                    margin: 1rem 0;
+                    width: 75%;
+                }
             }
         }
+    }
+    @media (max-width: 800px) {
+        margin: 1rem auto;
+        width: 100%;
     }
 `;
 
@@ -121,11 +167,39 @@ export const HeaderWrapper = styled.div`
     justify-content: center;
 `;
 
-export const ProjectViewWrapper = styled.div`
+export const ProjectOverviewWrapper = styled.div`
     display: flex;
     width: 80vw;
     margin-left: 20vw;
     height: 100%;
+    @media (max-width: 1024px) {
+        margin: 100px auto;
+        width: 100%;
+    }
+    @media (max-width: 800px) {
+        margin: 100px auto;
+        width: 100%;
+    }
+`;
+
+export const ProjectViewWrapper = styled(ProjectOverviewWrapper)`
+    @media (max-width: 1024px) {
+        margin-top: 0;
+    }
+    @media (max-width: 800px) {
+        margin-top: 0;
+        display: block;
+    }
+`;
+
+export const EditVievWrapper = styled(ProjectViewWrapper)`
+    @media (max-width: 1024px) {
+        margin-top: 120px;
+    }
+    @media (max-width: 800px) {
+        margin-top: 120px;
+        display: block;
+    }
 `;
 
 export const ProjectColumn = styled.div`
@@ -139,6 +213,9 @@ export const LeftProjectColumn = styled(ProjectColumn)`
 `;
 export const RightProjectColumn = styled(ProjectColumn)`
     flex: 3;
+    @media (max-width: 800px) {
+        padding: 1rem;
+    }
 `;
 
 export const DeletedProjectWrapper = styled.div`

@@ -8,7 +8,7 @@ import {
     InputField,
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 interface IModalProps {
@@ -78,20 +78,20 @@ export const NewProjectModal = (props: IModalProps) => {
                             setDisplayError(false);
                         }}
                     />
-                    <SubmitButton
+                    <ActionButton
                         $backgroundColor={colors.grey}
                         aria-label="Close dialog"
                         onClick={handleClose}
                     >
                         Cancel
-                    </SubmitButton>
-                    <SubmitButton
+                    </ActionButton>
+                    <ActionButton
                         aria-disabled={projectTitle.trim() === ""}
                         aria-label="Create Project"
                         onClick={handleSubmit}
                     >
                         Create
-                    </SubmitButton>
+                    </ActionButton>
                     {displayError && (
                         <ErrorMessage>Please provide a title!</ErrorMessage>
                     )}

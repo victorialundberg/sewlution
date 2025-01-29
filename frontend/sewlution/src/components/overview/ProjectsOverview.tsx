@@ -4,15 +4,23 @@ import { IProject } from "../../models/IProject";
 import { NewProjectButton } from "../buttons/NewProjectButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ProjectViewWrapper } from "../../styles/styledComponents/Wrappers";
+import { ProjectOverviewWrapper } from "../../styles/styledComponents/Wrappers";
 import { ProjectOverviewContainer } from "../../styles/styledComponents/Containers";
 import { Heading } from "../../styles/styledComponents/Items";
+import { useMediaQuery } from "react-responsive";
+import { ProjectOverviewMobile } from "./ProjectOverviewMobile";
 
 export const ProjectsOverview = () => {
     const navigate = useNavigate();
     const [projects, setProjects] = useState(useLoaderData() as IProject[]);
     const user = localStorage.getItem("username");
     const [deleted, setDeleted] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 575 });
+    const [openProjectId, setOpenProjectId] = useState<number | null>(null);
+
+    const toggleProject = (projectId: number) => {
+        setOpenProjectId((prev) => (prev === projectId ? null : projectId));
+    };
     if (!user) navigate("/");
 
     useEffect(() => {
@@ -40,7 +48,7 @@ export const ProjectsOverview = () => {
     };
     return (
         <>
-            <ProjectViewWrapper>
+            <ProjectOverviewWrapper>
                 <ProjectOverviewContainer>
                     <Heading>Active Projects</Heading>
                     <ul className="overviewHeader">
@@ -50,19 +58,33 @@ export const ProjectsOverview = () => {
                         <li>Options</li>
                     </ul>
                     <ul>
-                        {projects.map((project) => (
-                            <ProjectOverview
-                                onDelete={onDelete}
-                                project={project}
-                                key={project.project_id}
-                            ></ProjectOverview>
-                        ))}
+                        {projects.map((project) =>
+                            isMobile ? (
+                                <ProjectOverviewMobile
+                                    onDelete={onDelete}
+                                    isOpen={
+                                        openProjectId === project.project_id
+                                    }
+                                    onToggle={() =>
+                                        toggleProject(project.project_id)
+                                    }
+                                    project={project}
+                                    key={project.project_id}
+                                ></ProjectOverviewMobile>
+                            ) : (
+                                <ProjectOverview
+                                    onDelete={onDelete}
+                                    project={project}
+                                    key={project.project_id}
+                                ></ProjectOverview>
+                            )
+                        )}
                     </ul>
                     <div className="overviewFooter">
                         <NewProjectButton />
                     </div>
                 </ProjectOverviewContainer>
-            </ProjectViewWrapper>
+            </ProjectOverviewWrapper>
         </>
     );
 };

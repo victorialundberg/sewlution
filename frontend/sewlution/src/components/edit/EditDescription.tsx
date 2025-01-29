@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
 import { updateDescriptions } from "../../services/projects/edit/updateDescriptionService";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 import { Heading } from "../../styles/styledComponents/Items";
 
@@ -48,14 +48,14 @@ export const EditDescriptions = (props: IEditorProps) => {
                         }}
                     ></Editor>
                 </div>
-                <SubmitButton
+                <ActionButton
                     $backgroundColor={colors.green}
                     disabled={!enabled}
                     type="button"
                     onClick={handleClick}
                 >
                     Save
-                </SubmitButton>
+                </ActionButton>
             </EditContainer>
         </>
     );

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthContainer } from "../../styles/styledComponents/Containers";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 export const SignInOrUp = () => {
@@ -8,9 +8,9 @@ export const SignInOrUp = () => {
         <>
             <AuthContainer>
                 <Link to={"/signin"}>
-                    <SubmitButton $backgroundColor={colors.red}>
+                    <ActionButton $backgroundColor={colors.red}>
                         Sign in
-                    </SubmitButton>
+                    </ActionButton>
                 </Link>
                 <span>or</span>
                 <Link to={"/signup"}>Sign up</Link>

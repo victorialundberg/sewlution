@@ -14,7 +14,7 @@ export const BaseButton = styled.button`
     }
 `;
 
-export const SubmitButton = styled(BaseButton)<IButtonProps>`
+export const ActionButton = styled(BaseButton)<IButtonProps>`
     align-self: center;
     color: ${(props) => props.$color || "white"};
     background-color: ${(props) => props.$backgroundColor || "#5c2332"};
@@ -38,4 +38,20 @@ export const IconButton = styled(BaseButton)`
     border-radius: 0;
     background-color: white;
     display: flex;
+`;
+
+export const HeaderButton = styled(IconButton)`
+    @media (max-width: 450px) {
+        width: 20%;
+        min-width: 15%;
+    }
+`;
+
+export const ButtonContainerMobile = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 80%;
+    border-bottom: 1px solid #d9d9d9;
 `;

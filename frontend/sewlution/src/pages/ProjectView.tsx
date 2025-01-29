@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { IProjectsResponse } from "../models/IProjectsResponse";
 import { Materials } from "../components/overview/Materials";
 import { Todos } from "../components/overview/Todos";
@@ -6,6 +6,7 @@ import { Separator } from "../styles/styledComponents/Separator";
 import {
     ProjectHeader,
     ProjectViewContainer,
+    ProjectViewFooter,
 } from "../styles/styledComponents/Containers";
 import {
     HeaderWrapper,
@@ -15,6 +16,8 @@ import {
 } from "../styles/styledComponents/Wrappers";
 import DOMPurify from "dompurify";
 import { Heading } from "../styles/styledComponents/Items";
+import { ActionButton } from "../styles/styledComponents/Buttons";
+import { colors } from "../styles/colors";
 
 export const ProjectView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
@@ -29,14 +32,37 @@ export const ProjectView = () => {
         ? DOMPurify.sanitize(project.measurements)
         : "";
 
+    const isValidUrl = (url: string) => {
+        try {
+            new URL(url);
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
     return (
         <>
             <HeaderWrapper>
                 <ProjectHeader>
                     <h1>{project.title}</h1>
-                    {project.link && <Heading>{project.link}</Heading>}
+                    {project.link && isValidUrl(project.link) && (
+                        <a
+                            href={
+                                project.link.startsWith("http")
+                                    ? project.link
+                                    : `https://${project.link}`
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {project.link}
+                        </a>
+                    )}
                     {project.deadline && <Separator />}
-                    {project.deadline && <Heading>{project.deadline}</Heading>}
+                    {project.deadline && (
+                        <Heading>Deadline: {project.deadline}</Heading>
+                    )}
                 </ProjectHeader>
             </HeaderWrapper>
 
@@ -80,6 +106,13 @@ export const ProjectView = () => {
                     )}
                 </RightProjectColumn>
             </ProjectViewWrapper>
+            <ProjectViewFooter>
+                <Link to={`/edit/${project.project_id}`}>
+                    <ActionButton $backgroundColor={colors.grey}>
+                        Edit project
+                    </ActionButton>
+                </Link>
+            </ProjectViewFooter>
         </>
     );
 };

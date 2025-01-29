@@ -12,6 +12,9 @@ export const StartContainer = styled.div`
     > :first-child {
         margin: 2rem auto 0 auto;
     }
+    @media (max-width: 575px) {
+        width: 90%;
+    }
 `;
 
 export const AuthContainer = styled.div`
@@ -38,6 +41,32 @@ export const AuthContainer = styled.div`
         padding: 0.75rem 3.5rem;
         width: 100%;
     }
+    @media (max-width: 840px) {
+        width: 50%;
+    }
+    @media (max-width: 575px) {
+        button,
+        a,
+        span {
+            font-size: 1.5rem;
+        }
+    }
+    @media (max-width: 360px) {
+        width: 75%;
+    }
+`;
+
+export const AuthFooter = styled.div`
+    display: flex;
+    a {
+        margin: 0 auto;
+        text-align: center;
+        color: #3e3e3e;
+        font-size: 2rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 `;
 
 export const AuthSubmitContainer = styled.div`
@@ -55,20 +84,31 @@ export const AuthSubmitContainer = styled.div`
             font-size: 1.5rem;
             grid-column: span 2;
             justify-self: center;
+            @media (max-width: 475px) {
+                padding: 0.5rem 2rem;
+            }
         }
     }
     p {
         margin-top: 3rem;
         text-align: center;
     }
-    a {
-        text-align: center;
-        color: #3e3e3e;
-        margin-top: 8rem;
-        font-size: 2rem;
-        &:hover {
-            text-decoration: underline;
+    @media (max-width: 1024px) {
+        width: 60%;
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            label {
+                display: block;
+            }
         }
+        a {
+            margin-top: 2rem;
+        }
+    }
+    @media (max-width: 260px) {
+        width: 80%;
     }
 `;
 
@@ -99,6 +139,9 @@ export const ProjectOverviewContainer = styled(ProjectViewContainer)`
         margin: 0;
         > :first-child {
             border-top: 1px solid #a8a8b0;
+            @media (max-width: 1024px) {
+                border: none;
+            }
         }
     }
     .overviewHeader {
@@ -123,22 +166,62 @@ export const ProjectOverviewContainer = styled(ProjectViewContainer)`
         :nth-child(4) {
             justify-self: center;
         }
+        @media (max-width: 1024px) {
+            grid-template-columns: 35% 20% 20% 25%;
+        }
+        @media (max-width: 575px) {
+            display: none;
+        }
     }
     .overviewFooter {
         display: flex;
         > button {
             margin: 1rem auto;
-            width: 20%;
+            min-width: 20%;
         }
+    }
+    @media (max-width: 575px) {
+        margin: 3rem;
+    }
+    @media (max-width: 350px) {
+        margin: 1rem;
     }
 `;
 
 export const ProjectHeader = styled(ProjectViewContainer)`
     width: 30%;
     margin-left: 20vw;
-    h1 {
+    display: flex;
+    flex-direction: column;
+    h1,
+    a {
         text-align: center;
+    }
+    h1 {
         margin: 0;
+    }
+    a {
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        color: #3e3e3e;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    @media (max-width: 1024px) {
+        margin: 150px auto 0;
+        width: 50%;
+    }
+    @media (max-width: 800px) {
+        width: 80%;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        h1 {
+            font-size: 2rem;
+        }
+        a {
+            font-size: 1rem;
+        }
     }
 `;
 
@@ -183,5 +266,57 @@ export const EditContainer = styled(ProjetContainer)`
     button {
         width: 154px;
         border-radius: 25px;
+    }
+`;
+
+export const NavHeader = styled.div`
+    height: 100px;
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        width: 30%;
+    }
+    button {
+        height: 40px;
+    }
+    :first-child {
+        margin-left: 1rem;
+    }
+    :last-child {
+        margin-right: 1rem;
+    }
+    transition: transform 0.3s ease;
+    transform: translateY(0);
+    @media (min-width: 1024px) {
+        transform: translateY(-100%);
+    }
+`;
+
+export const ProjectViewFooter = styled.div`
+    justify-self: center;
+    margin: 2rem 0 2rem 20vw;
+    background-color: white;
+    width: 400px;
+    border-radius: 25px;
+    > a {
+        display: flex;
+        > button {
+            font-size: 1.5rem;
+            margin: 2rem auto;
+            @media (max-width: 460px) {
+                font-size: 1rem;
+            }
+        }
+    }
+    @media (max-width: 1024px) {
+        margin: -4rem 5% 2rem 5%;
+    }
+    @media (max-width: 460px) {
+        width: 90%;
+        margin: -6rem 5% 2rem 5%;
     }
 `;

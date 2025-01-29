@@ -7,13 +7,14 @@ import {
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
 import {
+    AuthFooter,
     AuthSubmitContainer,
     StartContainer,
 } from "../../styles/styledComponents/Containers";
 import { colors } from "../../styles/colors";
 import { Logo } from "../../styles/logo/Logo";
 import { LogoWrapper } from "../../styles/logo/LogoWrapper";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 
 export const SignUp = () => {
     const [username, setUsername] = useState("");
@@ -86,9 +87,9 @@ export const SignUp = () => {
                             setValidationMessage(false);
                         }}
                     />
-                    <SubmitButton $backgroundColor={colors.red}>
+                    <ActionButton $backgroundColor={colors.red}>
                         Sign up
-                    </SubmitButton>{" "}
+                    </ActionButton>{" "}
                 </form>
                 {displayError && <span>Username already exists</span>}
                 {validationMessage && (
@@ -96,8 +97,10 @@ export const SignUp = () => {
                         Please enter username and password
                     </ErrorMessage>
                 )}
-                <Link to={"/"}>back</Link>
             </AuthSubmitContainer>
+            <AuthFooter>
+                <Link to={"/"}>back</Link>
+            </AuthFooter>
         </StartContainer>
     );
 };

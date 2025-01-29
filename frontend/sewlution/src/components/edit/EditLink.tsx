@@ -8,7 +8,7 @@ import {
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
 import { colors } from "../../styles/colors";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 
 interface ILinkProps {
     link: string | undefined;
@@ -64,13 +64,13 @@ export const EditLink = (props: ILinkProps) => {
                         $bordercolor={colors.green}
                     />
                     {!link ? (
-                        <SubmitButton $backgroundColor={colors.green}>
+                        <ActionButton $backgroundColor={colors.green}>
                             Add
-                        </SubmitButton>
+                        </ActionButton>
                     ) : (
-                        <SubmitButton $backgroundColor={colors.green}>
+                        <ActionButton $backgroundColor={colors.green}>
                             Update
-                        </SubmitButton>
+                        </ActionButton>
                     )}
                 </form>
             </EditContainer>

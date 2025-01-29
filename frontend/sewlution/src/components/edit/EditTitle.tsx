@@ -7,7 +7,7 @@ import {
     InputField,
     ProjectLabel,
 } from "../../styles/styledComponents/Items";
-import { SubmitButton } from "../../styles/styledComponents/Buttons";
+import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 
 interface ITitleProps {
@@ -64,7 +64,7 @@ export const EditTitle = (props: ITitleProps) => {
                         $bordercolor={colors.red}
                     />
 
-                    <SubmitButton>Update</SubmitButton>
+                    <ActionButton>Update</ActionButton>
                 </form>
             </EditContainer>
         </>
