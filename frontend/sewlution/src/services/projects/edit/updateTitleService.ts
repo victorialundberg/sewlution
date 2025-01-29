@@ -5,10 +5,12 @@ export const updateTitle = async (
     title: string,
     projectId: number
 ): Promise<IUpdateResponse> => {
-    const response = await axios.patch(
-        "http://localhost:3000/projects/edit/title",
-        { title: title, project_id: projectId }
-    );
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    const response = await axios.patch(`${API_URL}/projects/edit/title`, {
+        title: title,
+        project_id: projectId,
+    });
     console.log(response);
 
     return response.data;

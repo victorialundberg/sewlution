@@ -11,8 +11,9 @@ interface IMaterialResponse {
 export const createMaterial = async (
     material: IMaterial
 ): Promise<IMaterialResponse> => {
+    const API_URL = process.env.REACT_APP_API_URL;
     const response: AxiosResponse<IMaterialResponse> = await axios.post(
-        "http://localhost:3000/projects/add/material",
+        `${API_URL}/projects/add/material"`,
         {
             project_id: material.project_id,
             material_row: material,

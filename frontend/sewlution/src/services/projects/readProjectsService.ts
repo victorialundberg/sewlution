@@ -1,9 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { IProject } from "../../models/IProject";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const getProjects = async (username: string): Promise<IProject[]> => {
     const response: AxiosResponse<IProject[]> = await axios.post(
-        "http://localhost:3000/projects/read/all/projects",
+        `${API_URL}/projects/read/all/projects`,
         { username: username }
     );
 
@@ -14,7 +15,7 @@ export const getDeletedProjects = async (
     username: string
 ): Promise<IProject[]> => {
     const response: AxiosResponse<IProject[]> = await axios.post(
-        "http://localhost:3000/projects/read/all/projects/deleted",
+        `${API_URL}/projects/read/all/projects/deleted`,
         { username: username }
     );
 

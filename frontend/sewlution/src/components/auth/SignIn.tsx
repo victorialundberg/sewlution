@@ -33,17 +33,14 @@ export const SignIn = () => {
         }
     };
 
-    //   const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const signIn = async (username: string, password: string) => {
         try {
-            const response = await axios.post(
-                "http://localhost:3000/users/signin",
-                {
-                    username: username,
-                    password: password,
-                }
-            );
+            const response = await axios.post(`${API_URL}/users/signin`, {
+                username: username,
+                password: password,
+            });
             setDisplayError(false);
             localStorage.setItem("username", response.data.username);
             navigate("/overview");

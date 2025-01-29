@@ -15,17 +15,16 @@ export const editProject = async (
     project: IProject,
     username: string
 ): Promise<IPatchRepsonse> => {
-    const response = await axios.patch(
-        "http://localhost:3000/projects/edit/project",
-        {
-            title: project.title,
-            description: project.description,
-            deadline: project.deadline,
-            link: project.link,
-            measurements: project.measurements,
-            project_id: project.project_id,
-            username: username,
-        }
-    );
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    const response = await axios.patch(`${API_URL}/projects/edit/project`, {
+        title: project.title,
+        description: project.description,
+        deadline: project.deadline,
+        link: project.link,
+        measurements: project.measurements,
+        project_id: project.project_id,
+        username: username,
+    });
     return response.data;
 };

@@ -32,17 +32,14 @@ export const SignUp = () => {
         }
     };
 
-    //   const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const addUser = async (username: string, password: string) => {
         try {
-            const response = await axios.post(
-                "http://localhost:3000/users/add",
-                {
-                    username: username,
-                    password: password,
-                }
-            );
+            const response = await axios.post(`${API_URL}/users/add`, {
+                username: username,
+                password: password,
+            });
             setDisplayError(false);
             navigate("/overview");
             localStorage.setItem("username", response.data);

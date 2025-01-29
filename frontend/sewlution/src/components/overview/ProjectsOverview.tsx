@@ -17,6 +17,7 @@ export const ProjectsOverview = () => {
     const [deleted, setDeleted] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 575 });
     const [openProjectId, setOpenProjectId] = useState<number | null>(null);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const toggleProject = (projectId: number) => {
         setOpenProjectId((prev) => (prev === projectId ? null : projectId));
@@ -27,7 +28,7 @@ export const ProjectsOverview = () => {
         const getUpdatedProjects = async (user: string) => {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/projects/read/all/projects",
+                    `${API_URL}/projects/read/all/projects`,
                     { username: user }
                 );
                 setProjects(response.data);
@@ -41,7 +42,7 @@ export const ProjectsOverview = () => {
             getUpdatedProjects(user);
             setDeleted(false);
         }
-    }, [deleted, user]);
+    }, [deleted, user, API_URL]);
 
     const onDelete = () => {
         setDeleted(true);

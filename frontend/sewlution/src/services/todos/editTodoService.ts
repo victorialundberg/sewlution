@@ -11,10 +11,9 @@ interface ITodoResponse {
 }
 
 export const editTodo = async (todo: ITodo): Promise<ITodoResponse> => {
-    console.log(todo.done);
-
+    const API_URL = process.env.REACT_APP_API_URL;
     const response: AxiosResponse<ITodoResponse> = await axios.patch(
-        "http://localhost:3000/projects/edit/todo",
+        `${API_URL}/projects/edit/todo`,
         {
             todo: {
                 todo_id: todo.todo_id,

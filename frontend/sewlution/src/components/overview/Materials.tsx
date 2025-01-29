@@ -20,12 +20,13 @@ export const Materials = (props: IMaterialProps) => {
     const [changed, setChanged] = useState(false);
     const projectId = props.projectId;
     const isMobile = useMediaQuery({ maxWidth: 450 });
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getMaterials = async (projectId: number) => {
             try {
                 const response = await axios.post<IMaterial[]>(
-                    "http://localhost:3000/projects/read/material",
+                    `${API_URL}/projects/read/material`,
                     { project_id: projectId }
                 );
                 setMaterials(response.data);
@@ -39,7 +40,7 @@ export const Materials = (props: IMaterialProps) => {
             getMaterials(projectId);
             setChanged(false);
         }
-    }, [changed, projectId]);
+    }, [changed, projectId, API_URL]);
 
     const handleSuccess = () => {
         setChanged(true);

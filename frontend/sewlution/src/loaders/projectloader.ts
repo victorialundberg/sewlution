@@ -6,9 +6,10 @@ export const projectLoader = async ({
     params,
 }: LoaderFunctionArgs): Promise<IProjectsResponse> => {
     const user = localStorage.getItem("username");
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const response: AxiosResponse<IProjectsResponse> = await axios.post(
-        "http://localhost:3000/projects/read/project",
+        `${API_URL}/projects/read/project`,
         { project: params.id, username: user }
     );
 

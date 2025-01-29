@@ -4,8 +4,9 @@ import { IDeleteResponse } from "../../models/IDeleteResponse";
 export const restoreProject = async (
     projectId: number
 ): Promise<IDeleteResponse> => {
+    const API_URL = process.env.REACT_APP_API_URL;
     const response: AxiosResponse<IDeleteResponse> = await axios.patch(
-        "http://localhost:3000/projects/restore/project",
+        `${API_URL}/projects/restore/project`,
         {
             project_id: projectId,
         }

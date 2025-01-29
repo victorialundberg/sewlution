@@ -19,12 +19,13 @@ export const EditDeadline = (props: IDeadlineProps) => {
     const [deadlineInput, setDeadlineInput] = useState("");
     const [deadline, setDeadline] = useState(props.deadline);
     const [changed, setChanged] = useState(false);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getDeadline = async (projectId: number) => {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/projects/read/deadline",
+                    `${API_URL}/projects/read/deadline`,
                     { project_id: projectId }
                 );
                 setDeadline(response.data.data.deadline);
@@ -39,7 +40,7 @@ export const EditDeadline = (props: IDeadlineProps) => {
             getDeadline(props.projectId);
             setChanged(false);
         }
-    }, [changed, props.projectId]);
+    }, [changed, props.projectId, API_URL]);
 
     const handleUpdate = async (e: FormEvent) => {
         e.preventDefault();

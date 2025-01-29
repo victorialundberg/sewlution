@@ -13,12 +13,13 @@ export const DeletedView = () => {
     const [projects, setProjects] = useState(useLoaderData() as IProject[]);
     const [changed, setChanged] = useState(false);
     const user = localStorage.getItem("username");
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getDeletedProjects = async (user: string) => {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/projects/read/all/projects/deleted",
+                    `${API_URL}/projects/read/all/projects/deleted`,
                     { username: user }
                 );
                 setProjects(response.data);
@@ -32,7 +33,7 @@ export const DeletedView = () => {
             getDeletedProjects(user);
             setChanged(false);
         }
-    }, [changed, user]);
+    }, [changed, user, API_URL]);
 
     const handleDelete = () => {
         setChanged(true);

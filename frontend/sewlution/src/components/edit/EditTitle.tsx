@@ -19,12 +19,13 @@ export const EditTitle = (props: ITitleProps) => {
     const [title, setTitle] = useState(props.title);
     const [titleInput, setTitleInput] = useState("");
     const [changed, setChanged] = useState(false);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getTitle = async (projectId: number) => {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/projects/read/title",
+                    `${API_URL}/projects/read/title`,
                     { project_id: projectId }
                 );
                 setTitle(response.data.data.title);
@@ -39,7 +40,7 @@ export const EditTitle = (props: ITitleProps) => {
             getTitle(props.projectId);
             setChanged(false);
         }
-    }, [changed, props.projectId]);
+    }, [changed, props.projectId, API_URL]);
 
     const handleUpdate = async (e: FormEvent) => {
         e.preventDefault();

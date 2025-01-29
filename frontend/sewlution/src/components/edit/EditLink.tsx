@@ -19,12 +19,13 @@ export const EditLink = (props: ILinkProps) => {
     const [link, setLink] = useState(props.link);
     const [linkInput, setLinkInput] = useState("");
     const [changed, setChanged] = useState(false);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getLink = async (projectId: number) => {
             try {
                 const response = await axios.post(
-                    "http://localhost:3000/projects/read/link",
+                    `${API_URL}/projects/read/link"`,
                     { project_id: projectId }
                 );
                 setLink(response.data.data.link);
@@ -39,7 +40,7 @@ export const EditLink = (props: ILinkProps) => {
             getLink(props.projectId);
             setChanged(false);
         }
-    }, [changed, props.projectId]);
+    }, [changed, props.projectId, API_URL]);
 
     const handleUpdate = async (e: FormEvent) => {
         e.preventDefault();

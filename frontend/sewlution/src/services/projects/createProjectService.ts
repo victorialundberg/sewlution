@@ -5,8 +5,10 @@ export const createProject = async (
     title: string,
     username: string
 ): Promise<number> => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const response: AxiosResponse<IResponse> = await axios.post(
-        "http://localhost:3000/projects/add/project",
+        `${API_URL}/projects/add/project`,
         { title: title, username: username }
     );
     return response.data.projectId;

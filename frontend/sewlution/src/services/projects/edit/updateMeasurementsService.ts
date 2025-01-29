@@ -5,8 +5,10 @@ export const updateMeasurements = async (
     measurements: string,
     projectId: number
 ): Promise<IUpdateResponse> => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const response = await axios.patch(
-        "http://localhost:3000/projects/edit/measurements",
+        `${API_URL}/projects/edit/measurements`,
         { measurements: measurements, project_id: projectId }
     );
     return response.data;

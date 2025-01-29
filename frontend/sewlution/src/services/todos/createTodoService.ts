@@ -8,8 +8,10 @@ export const createTodo = async (
     projectId: number,
     todo: string
 ): Promise<ITodoResponse> => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const response: AxiosResponse<ITodoResponse> = await axios.post(
-        "http://localhost:3000/projects/add/todo",
+        `${API_URL}/projects/add/todo`,
         {
             project_id: projectId,
             todo: todo,

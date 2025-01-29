@@ -24,12 +24,13 @@ export const Todos = (props: ITodoSProps) => {
     const [changed, setChanged] = useState(false);
     const [displayError, setDisplayError] = useState(false);
     const projectId = props.projectId;
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const getTodos = async (projectId: number) => {
             try {
                 const response = await axios.post<ITodo[]>(
-                    "http://localhost:3000/projects/read/todo",
+                    `${API_URL}/projects/read/todo`,
                     { project_id: projectId }
                 );
                 setTodos(response.data);
@@ -43,7 +44,7 @@ export const Todos = (props: ITodoSProps) => {
             getTodos(projectId);
             setChanged(false);
         }
-    }, [changed, todos.length, projectId]);
+    }, [changed, todos.length, projectId, API_URL]);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();

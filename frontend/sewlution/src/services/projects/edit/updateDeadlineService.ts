@@ -5,9 +5,11 @@ export const updateDeadline = async (
     deadline: string,
     projectId: number
 ): Promise<IUpdateResponse> => {
-    const response = await axios.patch(
-        "http://localhost:3000/projects/edit/deadline",
-        { deadline: deadline, project_id: projectId }
-    );
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    const response = await axios.patch(`${API_URL}/projects/edit/deadline`, {
+        deadline: deadline,
+        project_id: projectId,
+    });
     return response.data;
 };
