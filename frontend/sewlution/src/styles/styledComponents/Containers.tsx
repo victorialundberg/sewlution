@@ -244,6 +244,11 @@ export const EditContainer = styled(ProjetContainer)`
         font-size: 2rem;
         margin: 0 auto;
     }
+    div {
+        .tox-tinymce {
+            z-index: 0 !important;
+        }
+    }
     div,
     p {
         padding-bottom: 1rem;
@@ -277,6 +282,7 @@ export const NavHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
     div {
         width: 30%;
     }

@@ -8,7 +8,7 @@ export const MenuWrapper = styled.div`
     position: fixed;
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    z-index: 3;
 
     transition: transform 0.3s ease;
     transform: translateX(-100%);
