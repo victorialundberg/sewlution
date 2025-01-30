@@ -123,6 +123,22 @@ export const ProjectContainer = styled.div`
     flex-direction: column;
 `;
 
+export const AboutContainer = styled(ProjectContainer)`
+    h1 {
+        padding: 1rem;
+    }
+    p {
+        padding: 1rem;
+        font-family: serif;
+        font-size: 1.2rem;
+        margin: 0;
+        padding-bottom: 0.5rem;
+        @media (max-width: 300px) {
+            font-size: 1rem;
+        }
+    }
+`;
+
 export const ProjectViewContainer = styled(ProjectContainer)`
     display: block;
     padding: 2rem;
@@ -145,7 +161,7 @@ export const ProjectOverviewContainer = styled(ProjectViewContainer)`
         margin: 0;
         > :first-child {
             border-top: 1px solid #a8a8b0;
-            @media (max-width: 1024px) {
+            @media (max-width: 575px) {
                 border: none;
             }
         }
