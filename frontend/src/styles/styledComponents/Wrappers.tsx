@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { colors } from "../colors";
 
 export const MenuWrapper = styled.div`
-    background-color: white;
+    background-color: ${colors.white};
     height: 100vh;
     margin: 0;
     width: 20%;
@@ -51,7 +52,7 @@ export const NavbarWrapper = styled.div`
     li:first-child {
         border-top: 1px solid lightgray;
         button {
-            background-color: white;
+            background-color: ${colors.white};
             display: flex;
         }
     }
@@ -75,7 +76,7 @@ export const NavbarWrapper = styled.div`
             padding-right: 1rem;
         }
         a {
-            color: #3e3e3e;
+            color: ${colors.grey};
             display: block;
             width: 100%;
             padding: 1rem 0 1rem 1rem;
@@ -84,7 +85,7 @@ export const NavbarWrapper = styled.div`
 `;
 
 export const TodoWrapper = styled.div`
-    background-color: white;
+    background-color: ${colors.white};
     width: 90%;
     min-height: 150px;
     border-radius: 25px;
@@ -102,7 +103,7 @@ export const TodoWrapper = styled.div`
         display: grid;
         grid-template-columns: 70% 15% 15%;
         background-color: #5c2332;
-        color: white;
+        color: ${colors.white};
         align-items: center;
         li {
             font-size: 1.5rem;

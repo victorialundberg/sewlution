@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import { colors } from "../colors";
 
 export const TableWrapper = styled.div`
-    background-color: white;
+    background-color: ${colors.white};
     width: 90%;
     min-height: 150px;
     border-radius: 25px;
     margin: 1rem;
     padding-bottom: 3rem;
     > button {
-        background-color: #5e4b45;
+        background-color: ${colors.brown};
         display: flex;
         margin: 1.5rem auto -1.5rem auto;
-        color: white;
+        color: ${colors.white};
     }
     @media (max-width: 800px) {
         margin: auto;
@@ -35,8 +36,8 @@ export const MaterialTable = styled(Table)`
             > :first-child {
                 padding-left: 2rem;
             }
-            background-color: #5e4b45;
-            color: white;
+            background-color: ${colors.brown};
+            color: ${colors.white};
             text-align: left;
             height: 38px;
         }

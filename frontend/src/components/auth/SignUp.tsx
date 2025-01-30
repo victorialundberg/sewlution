@@ -103,9 +103,9 @@ export const SignUp = () => {
                     </ActionButton>
                 </form>
                 {displayError && (
-                    <span id="error-message" role="alert">
+                    <ErrorMessage id="error-message" role="alert">
                         Username already exists
-                    </span>
+                    </ErrorMessage>
                 )}
                 {validationMessage && (
                     <ErrorMessage id="validation-message" role="alert">

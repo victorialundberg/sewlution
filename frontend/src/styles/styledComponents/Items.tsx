@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../colors";
 
 interface IInputFieldProps {
     $bordercolor?: string;
@@ -14,7 +15,7 @@ export const ProjectOverviewItem = styled.li`
     > :first-child {
         padding-left: 2rem;
         text-align: left;
-        color: #3e3e3e;
+        color: ${colors.grey};
         &:hover {
             text-decoration: underline;
         }
@@ -41,7 +42,7 @@ export const ProjectOverviewItemMobile = styled.li`
     text-align: center;
     margin-bottom: 1rem;
     > button {
-        color: #3e3e3e;
+        color: ${colors.grey};
         font-size: 2rem;
         padding: 0.5rem 0 0 0;
         border-radius: 25px;
@@ -72,7 +73,7 @@ export const TodoItem = styled.li`
         height: 24px;
         margin: 6px;
         padding: 0;
-        border: 1px solid #5c2332;
+        border: 1px solid ${colors.red};
         appearance: none;
         background-color: transparent;
         outline: none;
@@ -81,8 +82,8 @@ export const TodoItem = styled.li`
         transition: background-color 0.2s, border-color 0.2s, outline 0.1s;
         justify-self: center;
         &:checked {
-            background-color: #ffffff;
-            border-color: #5c2332;
+            background-color: ${colors.white};
+            border-color: ${colors.red};
 
             &::after {
                 content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cGF0aCBkPSJNMjAgNiA5IDE3bC01LTUiLz48L3N2Zz4=");
@@ -98,12 +99,12 @@ export const TodoItem = styled.li`
         }
 
         &:focus {
-            outline: 2px solid black;
+            outline: 2px solid ${colors.black};
             outline-offset: 2px;
         }
 
         &:hover {
-            outline: 2px solid black;
+            outline: 2px solid ${colors.black};
             outline-offset: 2px;
         }
     }
@@ -112,11 +113,11 @@ export const TodoItem = styled.li`
 export const InputField = styled.input<IInputFieldProps>`
     height: 44px;
     border-radius: 25px;
-    border: 1px solid ${(props) => props.$bordercolor || "black"};
+    border: 1px solid ${(props) => props.$bordercolor || colors.black};
     padding: 0 15px;
     font-family: "Just Me Again Down Here", serif;
     font-size: 1.3rem;
-    color: #3e3e3e;
+    color: ${colors.grey};
 `;
 
 export const ProjectLabel = styled.label`
@@ -135,7 +136,7 @@ export const Heading = styled.p`
 
 export const ErrorMessage = styled.p`
     margin-top: 1rem;
-    color: #5c2332;
+    color: ${colors.red};
     font-size: 1.5rem;
 `;
 
@@ -144,7 +145,7 @@ export const Dialog = styled.dialog`
     border: none;
     border-radius: 25px;
     &::backdrop {
-        background-color: black;
+        background-color: ${colors.black};
         opacity: 50%;
     }
     @media (max-width: 650px) {

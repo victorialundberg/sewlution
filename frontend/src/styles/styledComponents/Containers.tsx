@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { colors } from "../colors";
 
 export const StartContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: ${colors.white};
     width: 70vw;
-    height: 80vh;
+    height: auto;
     border-radius: 75px;
     margin: auto;
     margin-top: 5%;
@@ -61,7 +62,7 @@ export const AuthFooter = styled.div`
     a {
         margin: 0 auto;
         text-align: center;
-        color: #3e3e3e;
+        color: ${colors.grey};
         font-size: 2rem;
         &:hover {
             text-decoration: underline;
@@ -112,8 +113,8 @@ export const AuthSubmitContainer = styled.div`
     }
 `;
 
-export const ProjetContainer = styled.div`
-    background-color: white;
+export const ProjectContainer = styled.div`
+    background-color: ${colors.white};
     max-width: 100%;
     border-radius: 25px;
     padding: 2rem;
@@ -122,12 +123,17 @@ export const ProjetContainer = styled.div`
     flex-direction: column;
 `;
 
-export const ProjectViewContainer = styled(ProjetContainer)`
+export const ProjectViewContainer = styled(ProjectContainer)`
     display: block;
     padding: 2rem;
     p {
         margin: 0;
         text-align: center;
+    }
+    > :nth-child(2) {
+        > p {
+            text-align: left;
+        }
     }
 `;
 export const ProjectOverviewContainer = styled(ProjectViewContainer)`
@@ -150,8 +156,8 @@ export const ProjectOverviewContainer = styled(ProjectViewContainer)`
         padding: 0;
         display: grid;
         grid-template-columns: 40% 20% 20% 20%;
-        background-color: #55736b;
-        color: white;
+        background-color: ${colors.green};
+        color: ${colors.white};
         li {
             font-size: 1.5rem;
             display: flex;
@@ -203,7 +209,7 @@ export const ProjectHeader = styled(ProjectViewContainer)`
     a {
         padding: 1rem 0;
         font-size: 1.5rem;
-        color: #3e3e3e;
+        color: ${colors.grey};
         &:hover {
             text-decoration: underline;
         }
@@ -226,20 +232,29 @@ export const ProjectHeader = styled(ProjectViewContainer)`
 `;
 
 export const DeletedProjectContainer = styled(ProjectViewContainer)`
-    display: grid;
-    color: white;
-    background-color: #55736b;
-    height: 119px;
-    width: 285px;
+    grid-column: span 2;
+    text-align: center;
+    color: ${colors.white};
+    background-color: ${colors.green};
+    height: auto;
+    max-width: 285px;
+    width: auto;
+    display: flex;
+    margin: 1rem;
+    p {
+        grid-column: span 2;
+        text-align: center;
+    }
     button {
         border-radius: 25px;
         padding: 0.5rem 1.5rem;
         justify-self: center;
         font-size: 1.5rem;
+        margin: 1rem;
     }
 `;
 
-export const EditContainer = styled(ProjetContainer)`
+export const EditContainer = styled(ProjectContainer)`
     p {
         font-size: 2rem;
         margin: 0 auto;
@@ -278,7 +293,7 @@ export const NavHeader = styled.div`
     height: 100px;
     position: fixed;
     width: 100vw;
-    background-color: white;
+    background-color: ${colors.white};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -305,7 +320,7 @@ export const NavHeader = styled.div`
 export const ProjectViewFooter = styled.div`
     justify-self: center;
     margin: 2rem 0 2rem 20vw;
-    background-color: white;
+    background-color: ${colors.white};
     width: 400px;
     border-radius: 25px;
     > a {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../colors";
 
 interface IButtonProps {
     $backgroundColor?: string;
@@ -16,8 +17,8 @@ export const BaseButton = styled.button`
 
 export const ActionButton = styled(BaseButton)<IButtonProps>`
     align-self: center;
-    color: ${(props) => props.$color || "white"};
-    background-color: ${(props) => props.$backgroundColor || "#5c2332"};
+    color: ${(props) => props.$color || colors.white};
+    background-color: ${(props) => props.$backgroundColor || colors.red};
     width: fit-content;
     height: fit-content;
     &[aria-disabled="true"] {
@@ -36,7 +37,7 @@ export const IconButton = styled(BaseButton)`
     margin: 0;
     justify-self: center;
     border-radius: 0;
-    background-color: white;
+    background-color: ${colors.white};
     display: flex;
 `;
 
@@ -77,7 +78,7 @@ export const NavButton = styled.button`
         padding-right: 1rem;
     }
     a {
-        color: #3e3e3e;
+        color: ${colors.grey};
         display: block;
         width: 100%;
         padding: 1rem 0 1rem 1rem;

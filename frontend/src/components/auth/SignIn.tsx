@@ -105,9 +105,9 @@ export const SignIn = () => {
                     </ActionButton>
                 </form>
                 {displayError && (
-                    <span id="error-message" role="alert">
+                    <ErrorMessage id="error-message" role="alert">
                         Sign in failed
-                    </span>
+                    </ErrorMessage>
                 )}
                 {validationMessage && (
                     <ErrorMessage id="validation-message" role="alert">
