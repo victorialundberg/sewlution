@@ -13,7 +13,7 @@ export const createMaterial = async (
 ): Promise<IMaterialResponse> => {
     const API_URL = import.meta.env.VITE_APP_API_URL;
     const response: AxiosResponse<IMaterialResponse> = await axios.post(
-        `${API_URL}/projects/add/material"`,
+        `${API_URL}/projects/add/material`,
         {
             project_id: material.project_id,
             material_row: material,
