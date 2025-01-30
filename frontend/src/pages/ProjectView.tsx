@@ -25,8 +25,8 @@ export const ProjectView = () => {
     const materials = projectLoader.materials;
     const todos = projectLoader.todos;
 
-    const sanitizedDescription = project.description
-        ? DOMPurify.sanitize(project.description)
+    const sanitizedNotes = project.notes
+        ? DOMPurify.sanitize(project.notes)
         : "";
     const sanitizedMeasurements = project.measurements
         ? DOMPurify.sanitize(project.measurements)
@@ -68,12 +68,12 @@ export const ProjectView = () => {
 
             <ProjectViewWrapper>
                 <LeftProjectColumn>
-                    {sanitizedDescription !== "" && (
+                    {sanitizedNotes !== "" && (
                         <ProjectViewContainer>
                             <Heading>Notes</Heading>
                             <p
                                 dangerouslySetInnerHTML={{
-                                    __html: sanitizedDescription,
+                                    __html: sanitizedNotes,
                                 }}
                             ></p>
                         </ProjectViewContainer>

@@ -1,7 +1,7 @@
 export interface IProject {
     project_id: number;
     title: string;
-    description?: string;
+    notes?: string;
     deadline?: string;
     link?: string;
     measurements?: string;

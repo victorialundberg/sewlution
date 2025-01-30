@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { EditContainer } from "../../styles/styledComponents/Containers";
-import { updateDescriptions } from "../../services/projects/edit/updateDescriptionService";
 import { ActionButton } from "../../styles/styledComponents/Buttons";
 import { colors } from "../../styles/colors";
 import { Heading } from "../../styles/styledComponents/Items";
+import { updateNotes } from "../../services/projects/edit/updateDescriptionService";
 
 interface IEditorProps {
     initialValue: string;
     projectId: number;
 }
 
-export const EditDescriptions = (props: IEditorProps) => {
+export const EditNotes = (props: IEditorProps) => {
     const [content, setContent] = useState("");
     const [enabled, setEnabled] = useState(false);
 
@@ -21,7 +21,7 @@ export const EditDescriptions = (props: IEditorProps) => {
     };
 
     const handleClick = async () => {
-        const response = await updateDescriptions(content, props.projectId);
+        const response = await updateNotes(content, props.projectId);
         if (response.data.success) {
             setEnabled(false);
         }
@@ -30,7 +30,7 @@ export const EditDescriptions = (props: IEditorProps) => {
     return (
         <>
             <EditContainer className="editNotes">
-                <Heading>Description</Heading>
+                <Heading>Notes</Heading>
                 <div>
                     <Editor
                         tinymceScriptSrc="/tinymce/tinymce.min.js"

@@ -4,7 +4,7 @@ import { IProject } from "../../../models/IProject";
 interface IPatchRepsonse {
     updatedProject: {
         title: string;
-        description: string;
+        notes: string;
         deadline: string;
         link: string;
         measurements: string;
@@ -19,7 +19,7 @@ export const editProject = async (
 
     const response = await axios.patch(`${API_URL}/projects/edit/project`, {
         title: project.title,
-        description: project.description,
+        notes: project.notes,
         deadline: project.deadline,
         link: project.link,
         measurements: project.measurements,

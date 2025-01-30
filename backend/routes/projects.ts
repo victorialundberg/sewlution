@@ -147,15 +147,15 @@ router.patch("/edit/title", (req, res) => {
     });
 });
 
-// read description
+// read notes
 
-router.post("/read/description", (req, res) => {
+router.post("/read/notes", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
         let project_id = req.body.project_id;
 
-        let query = "SELECT description FROM project WHERE project_id = ?";
+        let query = "SELECT notes FROM project WHERE project_id = ?";
         let values = [project_id];
 
         connection.query<RowDataPacket[]>(query, values, (err, data) => {
@@ -164,7 +164,7 @@ router.post("/read/description", (req, res) => {
             if (data.length < 1) {
                 return res
                     .status(404)
-                    .json({ message: "No description was found with that id" });
+                    .json({ message: "No notes was found with that id" });
             }
 
             console.log(data[0]);
@@ -174,10 +174,10 @@ router.post("/read/description", (req, res) => {
     });
 });
 
-// Update description
+// Update notes
 
-router.patch("/edit/description", (req, res) => {
-    let description = req.body.description;
+router.patch("/edit/notes", (req, res) => {
+    let notes = req.body.notes;
     let project_id = req.body.project_id;
     connection.connect((err) => {
         if (!project_id) {
@@ -187,14 +187,14 @@ router.patch("/edit/description", (req, res) => {
         }
         if (err) console.log("Error: ", err);
 
-        let query = "UPDATE project SET description = ? WHERE project_id = ?";
-        let values = [description, project_id];
+        let query = "UPDATE project SET notes = ? WHERE project_id = ?";
+        let values = [notes, project_id];
 
         connection.query(query, values, (err, data) => {
             if (err) console.log("Error", err);
             res.json({
                 data: {
-                    updated: description,
+                    updated: notes,
                     success: true,
                 },
             });
@@ -367,15 +367,15 @@ router.patch("/edit/measurements", (req, res) => {
     });
 });
 
-// read description
+// read notes
 
-router.post("/read/description", (req, res) => {
+router.post("/read/notes", (req, res) => {
     connection.connect((err) => {
         if (err) console.log("Error: ", err);
 
         let project_id = req.body.project_id;
 
-        let query = "SELECT description FROM project WHERE project_id = ?";
+        let query = "SELECT notes FROM project WHERE project_id = ?";
         let values = [project_id];
 
         connection.query<RowDataPacket[]>(query, values, (err, data) => {
@@ -383,7 +383,7 @@ router.post("/read/description", (req, res) => {
 
             if (data.length < 1) {
                 return res.status(404).json({
-                    message: "No description were found with that id",
+                    message: "No notes were found with that id",
                 });
             }
 
@@ -394,10 +394,10 @@ router.post("/read/description", (req, res) => {
     });
 });
 
-// Update description
+// Update notes
 
-router.patch("/edit/description", (req, res) => {
-    let description = req.body.description;
+router.patch("/edit/notes", (req, res) => {
+    let notes = req.body.notes;
     let project_id = req.body.project_id;
     connection.connect((err) => {
         if (!project_id) {
@@ -405,14 +405,14 @@ router.patch("/edit/description", (req, res) => {
         }
         if (err) console.log("Error: ", err);
 
-        let query = "UPDATE project SET description = ? WHERE project_id = ?";
-        let values = [description, project_id];
+        let query = "UPDATE project SET notes = ? WHERE project_id = ?";
+        let values = [notes, project_id];
 
         connection.query(query, values, (err, data) => {
             if (err) console.log("Error", err);
             res.json({
                 data: {
-                    updated: description,
+                    updated: notes,
                     success: true,
                 },
             });
@@ -424,7 +424,7 @@ router.patch("/edit/description", (req, res) => {
 
 router.patch("/edit/project", (req, res) => {
     let title = req.body.title;
-    let description = req.body.description;
+    let notes = req.body.notes;
     let deadline = req.body.deadline;
     let link = req.body.link;
     let measurements = req.body.measurements;
@@ -440,10 +440,10 @@ router.patch("/edit/project", (req, res) => {
         if (err) console.log("Error: ", err);
 
         let query =
-            "UPDATE project SET title = ?, description = ?, deadline = ?, link = ?, measurements = ? WHERE project_id = ? AND username = ?";
+            "UPDATE project SET title = ?, notes = ?, deadline = ?, link = ?, measurements = ? WHERE project_id = ? AND username = ?";
         let values = [
             title,
-            description,
+            notes,
             deadline,
             link,
             measurements,
@@ -457,7 +457,7 @@ router.patch("/edit/project", (req, res) => {
                 data: {
                     updatedProject: {
                         title,
-                        description,
+                        notes,
                         deadline,
                         link,
                         measurements,

@@ -12,10 +12,10 @@ import { Materials } from "../components/overview/Materials";
 import { Todos } from "../components/overview/Todos";
 import { EditMeasurements } from "../components/edit/EditMeasurements";
 import DOMPurify from "dompurify";
-import { EditDescriptions } from "../components/edit/EditDescription";
 import { colors } from "../styles/colors";
 import { ActionButton } from "../styles/styledComponents/Buttons";
 import { ProjectViewFooter } from "../styles/styledComponents/Containers";
+import { EditNotes } from "../components/edit/EditDescription";
 
 export const EditView = () => {
     const projectLoader = useLoaderData() as IProjectsResponse;
@@ -23,8 +23,8 @@ export const EditView = () => {
     const materials = projectLoader.materials;
     const todos = projectLoader.todos;
 
-    const sanitizedDescription = project.description
-        ? DOMPurify.sanitize(project.description)
+    const sanitizedNotes = project.notes
+        ? DOMPurify.sanitize(project.notes)
         : "";
     const sanitizedMeasurements = project.measurements
         ? DOMPurify.sanitize(project.measurements)
@@ -38,10 +38,10 @@ export const EditView = () => {
                         title={project.title}
                         projectId={project.project_id}
                     ></EditTitle>
-                    <EditDescriptions
-                        initialValue={sanitizedDescription}
+                    <EditNotes
+                        initialValue={sanitizedNotes}
                         projectId={project.project_id}
-                    ></EditDescriptions>
+                    ></EditNotes>
                     <EditDeadline
                         deadline={project.deadline}
                         projectId={project.project_id}
