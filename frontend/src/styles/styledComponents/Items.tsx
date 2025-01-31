@@ -12,6 +12,7 @@ export const ProjectOverviewItem = styled.li`
     grid-template-columns: 40% 20% 20% 20%;
     text-align: center;
     border-bottom: 1px solid #a8a8b0;
+    font-size: 1.5rem;
     > :first-child {
         padding-left: 2rem;
         text-align: left;
@@ -34,6 +35,9 @@ export const ProjectOverviewItem = styled.li`
     }
     @media (max-width: 1024px) {
         grid-template-columns: 35% 20% 20% 25%;
+    }
+    @media (max-width: 775px) {
+        font-size: 1.2rem;
     }
 `;
 

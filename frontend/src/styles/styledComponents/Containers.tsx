@@ -148,6 +148,7 @@ export const ProjectViewContainer = styled(ProjectContainer)`
     }
     > :nth-child(2) {
         > p {
+            font-size: 1.2rem;
             text-align: left;
         }
     }
@@ -175,7 +176,7 @@ export const ProjectOverviewContainer = styled(ProjectViewContainer)`
         background-color: ${colors.green};
         color: ${colors.white};
         li {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             display: flex;
             align-items: center;
             text-align: center;
