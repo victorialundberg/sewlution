@@ -5,6 +5,7 @@ import { LogoWrapper } from "../styles/logo/LogoWrapper";
 import { StartContainer } from "../styles/styledComponents/Containers";
 
 export const Start = () => {
+    localStorage.clear();
     return (
         <>
             <StartContainer>
